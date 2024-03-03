@@ -323,12 +323,12 @@ if a: b; c
     consequence: (block
       (expression_statement
         (identifier)))
-    alternative: (elif_clause
+    elifs: (elif_clause
       condition: (identifier)
-      consequence: (block
+      suite: (block
         (expression_statement
           (identifier))))
-    alternative: (else_clause
+    else: (else_clause
       body: (block
         (expression_statement
           (identifier)))))
@@ -337,7 +337,7 @@ if a: b; c
     consequence: (block
       (expression_statement
         (identifier)))
-    alternative: (else_clause
+    else: (else_clause
       body: (block
         (expression_statement
           (identifier)))))
@@ -377,7 +377,7 @@ g
         consequence: (block
           (expression_statement
             (identifier)))
-        alternative: (else_clause
+        else: (else_clause
           body: (block
             (if_statement
               condition: (identifier)
@@ -413,7 +413,7 @@ else:
     body: (block
       (expression_statement
         (identifier)))
-    alternative: (else_clause
+    else: (else_clause
       body: (block
         (expression_statement
           (identifier))
@@ -432,6 +432,9 @@ else:
   print x
 
 for x, in [(1,), (2,), (3,)]:
+  x
+
+async for x in xs:
   x
 
 --------------------------------------------------------------------------------
@@ -453,7 +456,7 @@ for x, in [(1,), (2,), (3,)]:
         body: (block
           (print_statement
             argument: (identifier)))))
-    alternative: (else_clause
+    else: (else_clause
       body: (block
         (print_statement
           argument: (identifier)))))
@@ -461,12 +464,18 @@ for x, in [(1,), (2,), (3,)]:
     left: (pattern_list
       (identifier))
     right: (list
-      (tuple
-        (integer))
-      (tuple
-        (integer))
-      (tuple
-        (integer)))
+      elements: (tuple
+        elements: (integer))
+      elements: (tuple
+        elements: (integer))
+      elements: (tuple
+        elements: (integer)))
+    body: (block
+      (expression_statement
+        (identifier))))
+  (async_for_statement
+    left: (identifier)
+    right: (identifier)
     body: (block
       (expression_statement
         (identifier)))))
@@ -514,71 +523,71 @@ finally:
     body: (block
       (expression_statement
         (identifier)))
-    (except_clause
-      (identifier)
-      (block
+    except: (except_clause
+      except_expr: (identifier)
+      body: (block
         (expression_statement
           (identifier))))
-    (except_clause
-      (as_pattern
-        (identifier)
+    except: (except_clause
+      except_expr: (as_pattern
+        value: (identifier)
         alias: (as_pattern_target
           (identifier)))
-      (block
+      body: (block
         (expression_statement
           (identifier))))
-    (except_clause
-      (identifier)
-      (identifier)
-      (block
+    except: (except_clause
+      except_expr: (identifier)
+      as_expr: (identifier)
+      body: (block
         (expression_statement
           (identifier))))
-    (except_clause
-      (block
+    except: (except_clause
+      body: (block
         (expression_statement
           (identifier)))))
   (try_statement
     body: (block
       (expression_statement
         (identifier)))
-    (except_clause
-      (identifier)
-      (block
+    except: (except_clause
+      except_expr: (identifier)
+      body: (block
         (expression_statement
           (identifier))
         (expression_statement
           (identifier))))
-    (else_clause
+    else: (else_clause
       body: (block
         (expression_statement
           (identifier))))
-    (finally_clause
-      (block
+    finally: (finally_clause
+      body: (block
         (expression_statement
           (identifier)))))
   (try_statement
     body: (block
       (expression_statement
         (identifier)))
-    (except_group_clause
-      (identifier)
-      (block
-        (expression_statement
-          (identifier))))
-    (except_group_clause
-      (as_pattern
-        (identifier)
-        alias: (as_pattern_target
-          (identifier)))
-      (block
-        (expression_statement
-          (identifier))))
-    (else_clause
+    except: (except_group_clause
+      except_expr: (identifier)
       body: (block
         (expression_statement
           (identifier))))
-    (finally_clause
-      (block
+    except: (except_group_clause
+      except_expr: (as_pattern
+        value: (identifier)
+        alias: (as_pattern_target
+          (identifier)))
+      body: (block
+        (expression_statement
+          (identifier))))
+    else: (else_clause
+      body: (block
+        (expression_statement
+          (identifier))))
+    finally: (finally_clause
+      body: (block
         (expression_statement
           (identifier))))))
 
@@ -602,53 +611,53 @@ with e as f, g as h,:
   (with_statement
     (with_clause
       (with_item
-        (as_pattern
-          (identifier)
-          (as_pattern_target
+        value: (as_pattern
+          value: (identifier)
+          alias: (as_pattern_target
             (identifier)))))
-    (block
+    body: (block
       (expression_statement
         (identifier))))
   (with_statement
     (with_clause
       (with_item
-        (as_pattern
-          (call
-            (identifier)
-            (argument_list
+        value: (as_pattern
+          value: (call
+            function: (identifier)
+            arguments: (argument_list
               (string
                 (string_start)
                 (string_content)
                 (string_end))))
-          (as_pattern_target
+          alias: (as_pattern_target
             (identifier))))
       (with_item
-        (as_pattern
-          (call
-            (identifier)
-            (argument_list
+        value: (as_pattern
+          value: (call
+            function: (identifier)
+            arguments: (argument_list
               (string
                 (string_start)
                 (string_content)
                 (string_end))))
-          (as_pattern_target
+          alias: (as_pattern_target
             (identifier)))))
-    (block
+    body: (block
       (expression_statement
         (identifier))))
   (with_statement
     (with_clause
       (with_item
-        (as_pattern
-          (identifier)
-          (as_pattern_target
+        value: (as_pattern
+          value: (identifier)
+          alias: (as_pattern_target
             (identifier))))
       (with_item
-        (as_pattern
-          (identifier)
-          (as_pattern_target
+        value: (as_pattern
+          value: (identifier)
+          alias: (as_pattern_target
             (identifier)))))
-    (block
+    body: (block
       (expression_statement
         (identifier)))))
 
@@ -686,20 +695,20 @@ async def d(a:str="default", b=c) -> None:
 --------------------------------------------------------------------------------
 
 (module
-  (function_definition
+  (async_function_definition
     name: (identifier)
     parameters: (parameters)
     body: (block
       (expression_statement
         (identifier))))
-  (function_definition
+  (async_function_definition
     name: (identifier)
     parameters: (parameters
       (identifier))
     body: (block
       (expression_statement
         (identifier))))
-  (function_definition
+  (async_function_definition
     name: (identifier)
     parameters: (parameters
       (identifier)
@@ -707,7 +716,7 @@ async def d(a:str="default", b=c) -> None:
     body: (block
       (expression_statement
         (identifier))))
-  (function_definition
+  (async_function_definition
     name: (identifier)
     parameters: (parameters
       (typed_parameter
@@ -717,7 +726,7 @@ async def d(a:str="default", b=c) -> None:
     body: (block
       (expression_statement
         (identifier))))
-  (function_definition
+  (async_function_definition
     name: (identifier)
     parameters: (parameters
       (typed_parameter
@@ -729,7 +738,7 @@ async def d(a:str="default", b=c) -> None:
     body: (block
       (expression_statement
         (identifier))))
-  (function_definition
+  (async_function_definition
     name: (identifier)
     parameters: (parameters
       (typed_parameter
@@ -745,7 +754,7 @@ async def d(a:str="default", b=c) -> None:
     body: (block
       (expression_statement
         (identifier))))
-  (function_definition
+  (async_function_definition
     name: (identifier)
     parameters: (parameters
       (identifier)
@@ -759,7 +768,7 @@ async def d(a:str="default", b=c) -> None:
     body: (block
       (expression_statement
         (identifier))))
-  (function_definition
+  (async_function_definition
     name: (identifier)
     parameters: (parameters
       (typed_parameter
@@ -770,8 +779,8 @@ async def d(a:str="default", b=c) -> None:
       (none))
     body: (block
       (return_statement
-        (none))))
-  (function_definition
+        value: (none))))
+  (async_function_definition
     name: (identifier)
     parameters: (parameters
       (typed_default_parameter
@@ -789,7 +798,7 @@ async def d(a:str="default", b=c) -> None:
       (none))
     body: (block
       (return_statement
-        (none)))))
+        value: (none)))))
 
 ================================================================================
 Function definitions
@@ -830,9 +839,9 @@ def foo():
         (identifier)))
     body: (block
       (return_statement
-        (tuple
-          (identifier)
-          (identifier)))))
+        value: (tuple
+          elements: (identifier)
+          elements: (identifier)))))
   (function_definition
     name: (identifier)
     parameters: (parameters
@@ -874,7 +883,7 @@ def foo():
         (identifier)))
     body: (block
       (return_statement
-        (expression_list
+        value: (expression_list
           (identifier)
           (identifier)
           (identifier)
@@ -891,15 +900,15 @@ def foo():
           function: (identifier)
           arguments: (argument_list
             (parenthesized_expression
-              (list_splat
+              expr: (list_splat
                 (identifier))))))
       (expression_statement
         (call
           function: (identifier)
           arguments: (argument_list
             (parenthesized_expression
-              (parenthesized_expression
-                (list_splat
+              expr: (parenthesized_expression
+                expr: (list_splat
                   (identifier)))))))))
   (function_definition
     name: (identifier)
@@ -1092,7 +1101,7 @@ def spam():
             (call
               (identifier)
               (argument_list)))
-          (function_definition
+          (async_function_definition
             (identifier)
             (parameters)
             (block
