@@ -609,7 +609,7 @@ with e as f, g as h,:
 
 (module
   (with_statement
-    (with_clause
+    with: (with_clause
       (with_item
         value: (as_pattern
           value: (identifier)
@@ -619,7 +619,7 @@ with e as f, g as h,:
       (expression_statement
         (identifier))))
   (with_statement
-    (with_clause
+    with: (with_clause
       (with_item
         value: (as_pattern
           value: (call
@@ -646,7 +646,7 @@ with e as f, g as h,:
       (expression_statement
         (identifier))))
   (with_statement
-    (with_clause
+    with: (with_clause
       (with_item
         value: (as_pattern
           value: (identifier)
@@ -867,7 +867,7 @@ def foo():
     parameters: (parameters)
     body: (block
       (nonlocal_statement
-        (identifier))))
+        names: (identifier))))
   (function_definition
     name: (identifier)
     parameters: (parameters

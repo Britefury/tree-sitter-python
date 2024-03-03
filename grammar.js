@@ -98,6 +98,7 @@ module.exports = grammar({
     $._left_hand_side,
     $.keyword_identifier,
     $._for_in_clause_body,
+    $._with_statement_content,
     $._function_definition_content,
   ],
 
@@ -168,7 +169,7 @@ module.exports = grammar({
       )),
       'import',
       choice(
-        $.wildcard_import,
+        field('name', $.wildcard_import),
         $._import_list,
         seq('(', $._import_list, ')'),
       ),
@@ -193,7 +194,7 @@ module.exports = grammar({
     print_statement: $ => choice(
       prec(1, seq(
         'print',
-        $.chevron,
+        field('to', $.chevron),
         repeat(seq(',', field('argument', $.expression))),
         optional(',')),
       ),
@@ -206,7 +207,7 @@ module.exports = grammar({
 
     chevron: $ => seq(
       '>>',
-      $.expression,
+      field('target', $.expression),
     ),
 
     assert_statement: $ => seq(
@@ -240,7 +241,7 @@ module.exports = grammar({
 
     delete_statement: $ => seq(
       'del',
-      $._expressions,
+      field('target', $._expressions),
     ),
 
     _expressions: $ => choice(
@@ -367,7 +368,7 @@ module.exports = grammar({
           optional(field('else', $.else_clause)),
           optional(field('finally', $.finally_clause)),
         ),
-        $.finally_clause,
+        field('finally', $.finally_clause),
       ),
     ),
 
@@ -403,17 +404,16 @@ module.exports = grammar({
       field('body', $._suite),
     ),
 
-    with_statement: $ => seq(
-      'with',
-      $.with_clause,
-      ':',
-      field('body', $._suite),
-    ),
+    with_statement: $ => $._with_statement_content,
 
     async_with_statement: $ => seq(
       'async',
+      $._with_statement_content,
+    ),
+
+    _with_statement_content: $ => seq(
       'with',
-      $.with_clause,
+      field('with', $.with_clause),
       ':',
       field('body', $._suite),
     ),
@@ -470,12 +470,12 @@ module.exports = grammar({
 
     global_statement: $ => seq(
       'global',
-      commaSep1($.identifier),
+      commaSep1(field('names', $.identifier)),
     ),
 
     nonlocal_statement: $ => seq(
       'nonlocal',
-      commaSep1($.identifier),
+      commaSep1(field('names', $.identifier)),
     ),
 
     exec_statement: $ => seq(
@@ -484,7 +484,7 @@ module.exports = grammar({
       optional(
         seq(
           'in',
-          commaSep1($.expression),
+          commaSep1(field('env', $.expression)),
         ),
       ),
     ),
@@ -536,7 +536,7 @@ module.exports = grammar({
     ),
 
     decorated_definition: $ => seq(
-      repeat1($.decorator),
+      repeat1(field('decorators', $.decorator)),
       field('definition', choice(
         $.class_definition,
         $.function_definition,
@@ -546,7 +546,7 @@ module.exports = grammar({
 
     decorator: $ => seq(
       '@',
-      $.expression,
+      field('expr', $.expression),
       $._newline,
     ),
 
@@ -580,8 +580,7 @@ module.exports = grammar({
     // Match cases
 
     case_pattern: $ => prec(1, choice(
-      // alias($._as_pattern, $.as_pattern),
-      $.case_as_pattern,
+      alias($._as_pattern, $.as_pattern),
       $.keyword_pattern,
       $._simple_pattern,
     )),
@@ -604,11 +603,10 @@ module.exports = grammar({
       '_',
     )),
 
-    // _as_pattern: $ => seq($.case_pattern, 'as', $.identifier),
-    case_as_pattern: $ => seq(
-      field('pattern', $.case_pattern),
+    _as_pattern: $ => seq(
+      field('value', $.case_pattern),
       'as',
-      field('target', $.identifier)
+      field('alias', $.identifier)
     ),
 
     union_pattern: $ => prec.right(seq($._simple_pattern, repeat1(prec.left(seq('|', $._simple_pattern))))),

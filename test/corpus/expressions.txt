@@ -1023,7 +1023,7 @@ async with a as b:
 
 (module
   (async_with_statement
-    (with_clause
+    with: (with_clause
       (with_item
         value: (as_pattern
           value: (identifier)
