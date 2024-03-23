@@ -144,7 +144,7 @@ module.exports = grammar({
       $._import_list,
     ),
 
-    import_prefix: _ => repeat1('.'),
+    import_prefix: _ => token(repeat1('.')),
 
     relative_import: $ => seq(
       field('levels', $.import_prefix),
@@ -303,10 +303,10 @@ module.exports = grammar({
       commaSep1(field('subject', $.expression)),
       optional(','),
       ':',
-      field('body', alias($._match_block, $.block)),
+      field('body', $.match_block),
     ),
 
-    _match_block: $ => choice(
+    match_block: $ => choice(
       seq(
         $._indent,
         repeat(field('alternative', $.case_clause)),
@@ -317,7 +317,7 @@ module.exports = grammar({
 
     case_clause: $ => seq(
       'case',
-      commaSep1($.case_pattern),
+      field('pattern', commaSep1($.case_pattern)),
       optional(','),
       optional(field('guard', $.if_clause)),
       ':',
@@ -632,38 +632,45 @@ module.exports = grammar({
     dict_pattern: $ => seq(
       '{',
       optional(seq(
-        commaSep1(choice($._key_value_pattern, $.splat_pattern)),
+        commaSep1(field('elements', choice($.key_value_pattern, $.splat_pattern))),
         optional(','),
       )),
       '}',
     ),
 
-    _key_value_pattern: $ => seq(
+    key_value_pattern: $ => seq(
       field('key', $._simple_pattern),
       ':',
       field('value', $.case_pattern),
     ),
 
-    keyword_pattern: $ => seq($.identifier, '=', $._simple_pattern),
+    keyword_pattern: $ => seq(field('name', $.identifier), '=', field('pattern', $._simple_pattern)),
 
-    splat_pattern: $ => prec(1, seq(choice('*', '**'), choice($.identifier, '_'))),
+    splat_pattern: $ => prec(1, seq(field('splat', choice($.splat_pattern_list, $.splat_pattern_dict)), field('name', choice($.identifier, '_')))),
+
+    splat_pattern_list: $ => token('*'),
+
+    splat_pattern_dict: $ => token('**'),
 
     class_pattern: $ => seq(
-      $.dotted_name,
+      field('name', $.dotted_name),
       '(',
       optional(seq(
-        commaSep1($.case_pattern),
+        field('patterns', commaSep1($.case_pattern)),
         optional(','),
       )),
       ')',
     ),
 
     complex_pattern: $ => prec(1, seq(
+      field('real', token(seq(optional('-'), choice($.integer, $.float)))),
+      field('imaginary', token(seq(choice('+', '-'), choice($.integer, $.float))),
+    ))),
+
+    negatable_number: $ => seq(
       optional('-'),
       choice($.integer, $.float),
-      choice('+', '-'),
-      choice($.integer, $.float),
-    )),
+    ),
 
     // Patterns
 
