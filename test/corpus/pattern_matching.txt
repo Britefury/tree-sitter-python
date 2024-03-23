@@ -23,7 +23,7 @@ match command.split():
         (identifier)
         (identifier))
       (argument_list))
-    (block
+    (match_block
       (case_clause
         (case_pattern
           (list_pattern
@@ -121,7 +121,7 @@ match command.split():
         (identifier)
         (identifier))
       (argument_list))
-    (block
+    (match_block
       (case_clause
         (case_pattern
           (list_pattern
@@ -132,6 +132,7 @@ match command.split():
                 (string_end)))
             (case_pattern
               (splat_pattern
+                (splat_pattern_list)
                 (identifier)))))
         (block
           (for_statement
@@ -168,7 +169,7 @@ match command.split():
         (identifier)
         (identifier))
       (argument_list))
-    (block
+    (match_block
       (comment)
       (case_clause
         (case_pattern
@@ -205,6 +206,7 @@ match command.split():
                 (string_end)))
             (case_pattern
               (splat_pattern
+                (splat_pattern_list)
                 (identifier)))))
         (block
           (pass_statement)))
@@ -242,7 +244,7 @@ match command.split():
         (identifier)
         (identifier))
       (argument_list))
-    (block
+    (match_block
       (case_clause
         (case_pattern
           (union_pattern
@@ -336,7 +338,7 @@ match command.split():
         (identifier)
         (identifier))
       (argument_list))
-    (block
+    (match_block
       (case_clause
         (case_pattern
           (list_pattern
@@ -549,7 +551,7 @@ match 0:
 (module
   (match_statement
     (integer)
-    (block
+    (match_block
       (case_clause
         (case_pattern
           (integer))
@@ -594,7 +596,7 @@ match xxx:
 (module
   (match_statement
     (identifier)
-    (block
+    (match_block
       (case_clause
         (case_pattern
           (union_pattern
@@ -661,7 +663,7 @@ match (0, 1, 2):
       (integer)
       (integer)
       (integer))
-    (block
+    (match_block
       (case_clause
         (case_pattern
           (integer))
@@ -677,6 +679,7 @@ match (0, 1, 2):
           (integer))
         (case_pattern
           (splat_pattern
+            (splat_pattern_list)
             (identifier)))
         (block
           (expression_statement
@@ -697,10 +700,11 @@ match x,:
 (module
   (match_statement
     (identifier)
-    (block
+    (match_block
       (case_clause
         (case_pattern
           (splat_pattern
+            (splat_pattern_list)
             (identifier)))
         (block
           (expression_statement
@@ -722,7 +726,7 @@ match ..., ...:
   (match_statement
     (ellipsis)
     (ellipsis)
-    (block
+    (match_block
       (case_clause
         (case_pattern
           (dotted_name
@@ -755,7 +759,7 @@ match match:
         (integer))))
   (match_statement
     (identifier)
-    (block
+    (match_block
       (case_clause
         (case_pattern
           (dotted_name
@@ -824,7 +828,7 @@ match event.get():
         (identifier)
         (identifier))
       (argument_list))
-    (block
+    (match_block
       (case_clause
         (case_pattern
           (class_pattern
@@ -932,7 +936,7 @@ match event.get():
         (identifier)
         (identifier))
       (argument_list))
-    (block
+    (match_block
       (case_clause
         (case_pattern
           (class_pattern
@@ -973,7 +977,7 @@ match event.get():
         (identifier)
         (identifier))
       (argument_list))
-    (block
+    (match_block
       (case_clause
         (case_pattern
           (class_pattern
@@ -1036,24 +1040,26 @@ for action in actions:
     (block
       (match_statement
         (identifier)
-        (block
+        (match_block
           (case_clause
             (case_pattern
               (dict_pattern
-                (string
-                  (string_start)
-                  (string_content)
-                  (string_end))
-                (case_pattern
-                  (dotted_name
-                    (identifier)))
-                (string
-                  (string_start)
-                  (string_content)
-                  (string_end))
-                (case_pattern
-                  (dotted_name
-                    (identifier)))))
+                (key_value_pattern
+                  (string
+                    (string_start)
+                    (string_content)
+                    (string_end))
+                  (case_pattern
+                    (dotted_name
+                      (identifier))))
+                (key_value_pattern
+                  (string
+                    (string_start)
+                    (string_content)
+                    (string_end))
+                  (case_pattern
+                    (dotted_name
+                      (identifier))))))
             (block
               (expression_statement
                 (call
@@ -1072,40 +1078,14 @@ for action in actions:
           (case_clause
             (case_pattern
               (dict_pattern
-                (string
-                  (string_start)
-                  (string_content)
-                  (string_end))
-                (case_pattern
-                  (dotted_name
-                    (identifier)))))
-            (block
-              (expression_statement
-                (call
-                  (attribute
-                    (identifier)
-                    (identifier))
-                  (argument_list
-                    (identifier))))))
-          (case_clause
-            (case_pattern
-              (dict_pattern
-                (string
-                  (string_start)
-                  (string_content)
-                  (string_end))
-                (case_pattern
-                  (dotted_name
-                    (identifier)))
-                (string
-                  (string_start)
-                  (string_content)
-                  (string_end))
-                (case_pattern
+                (key_value_pattern
                   (string
                     (string_start)
                     (string_content)
-                    (string_end)))))
+                    (string_end))
+                  (case_pattern
+                    (dotted_name
+                      (identifier))))))
             (block
               (expression_statement
                 (call
@@ -1117,12 +1097,42 @@ for action in actions:
           (case_clause
             (case_pattern
               (dict_pattern
-                (dotted_name
-                  (identifier)
-                  (identifier))
-                (case_pattern
+                (key_value_pattern
+                  (string
+                    (string_start)
+                    (string_content)
+                    (string_end))
+                  (case_pattern
+                    (dotted_name
+                      (identifier))))
+                (key_value_pattern
+                  (string
+                    (string_start)
+                    (string_content)
+                    (string_end))
+                  (case_pattern
+                    (string
+                      (string_start)
+                      (string_content)
+                      (string_end))))))
+            (block
+              (expression_statement
+                (call
+                  (attribute
+                    (identifier)
+                    (identifier))
+                  (argument_list
+                    (identifier))))))
+          (case_clause
+            (case_pattern
+              (dict_pattern
+                (key_value_pattern
                   (dotted_name
-                    (identifier)))))
+                    (identifier)
+                    (identifier))
+                  (case_pattern
+                    (dotted_name
+                      (identifier))))))
             (block
               (expression_statement
                 (call
@@ -1131,16 +1141,18 @@ for action in actions:
           (case_clause
             (case_pattern
               (dict_pattern
-                (string
-                  (string_start)
-                  (string_content)
-                  (string_end))
-                (case_pattern)
-                (string
-                  (string_start)
-                  (string_content)
-                  (string_end))
-                (case_pattern)))
+                (key_value_pattern
+                  (string
+                    (string_start)
+                    (string_content)
+                    (string_end))
+                  (case_pattern))
+                (key_value_pattern
+                  (string
+                    (string_start)
+                    (string_content)
+                    (string_end))
+                  (case_pattern))))
             (block
               (expression_statement
                 (call
@@ -1176,32 +1188,34 @@ for action in actions:
     (block
       (match_statement
         (identifier)
-        (block
+        (match_block
           (case_clause
             (case_pattern
               (dict_pattern
-                (string
-                  (string_start)
-                  (string_content)
-                  (string_end))
-                (case_pattern
-                  (class_pattern
-                    (dotted_name
-                      (identifier))
-                    (case_pattern
+                (key_value_pattern
+                  (string
+                    (string_start)
+                    (string_content)
+                    (string_end))
+                  (case_pattern
+                    (class_pattern
                       (dotted_name
-                        (identifier)))))
-                (string
-                  (string_start)
-                  (string_content)
-                  (string_end))
-                (case_pattern
-                  (class_pattern
-                    (dotted_name
-                      (identifier))
-                    (case_pattern
+                        (identifier))
+                      (case_pattern
+                        (dotted_name
+                          (identifier))))))
+                (key_value_pattern
+                  (string
+                    (string_start)
+                    (string_content)
+                    (string_end))
+                  (case_pattern
+                    (class_pattern
                       (dotted_name
-                        (identifier)))))))
+                        (identifier))
+                      (case_pattern
+                        (dotted_name
+                          (identifier))))))))
             (block
               (expression_statement
                 (call
@@ -1220,48 +1234,18 @@ for action in actions:
           (case_clause
             (case_pattern
               (dict_pattern
-                (string
-                  (string_start)
-                  (string_content)
-                  (string_end))
-                (case_pattern
-                  (class_pattern
-                    (dotted_name
-                      (identifier))
-                    (case_pattern
-                      (dotted_name
-                        (identifier)))))))
-            (block
-              (expression_statement
-                (call
-                  (attribute
-                    (identifier)
-                    (identifier))
-                  (argument_list
-                    (identifier))))))
-          (case_clause
-            (case_pattern
-              (dict_pattern
-                (string
-                  (string_start)
-                  (string_content)
-                  (string_end))
-                (case_pattern
-                  (class_pattern
-                    (dotted_name
-                      (identifier))
-                    (case_pattern
-                      (dotted_name
-                        (identifier)))))
-                (string
-                  (string_start)
-                  (string_content)
-                  (string_end))
-                (case_pattern
+                (key_value_pattern
                   (string
                     (string_start)
                     (string_content)
-                    (string_end)))))
+                    (string_end))
+                  (case_pattern
+                    (class_pattern
+                      (dotted_name
+                        (identifier))
+                      (case_pattern
+                        (dotted_name
+                          (identifier))))))))
             (block
               (expression_statement
                 (call
@@ -1273,16 +1257,51 @@ for action in actions:
           (case_clause
             (case_pattern
               (dict_pattern
-                (string
-                  (string_start)
-                  (string_content)
-                  (string_end))
-                (case_pattern)
-                (string
-                  (string_start)
-                  (string_content)
-                  (string_end))
-                (case_pattern)))
+                (key_value_pattern
+                  (string
+                    (string_start)
+                    (string_content)
+                    (string_end))
+                  (case_pattern
+                    (class_pattern
+                      (dotted_name
+                        (identifier))
+                      (case_pattern
+                        (dotted_name
+                          (identifier))))))
+                (key_value_pattern
+                  (string
+                    (string_start)
+                    (string_content)
+                    (string_end))
+                  (case_pattern
+                    (string
+                      (string_start)
+                      (string_content)
+                      (string_end))))))
+            (block
+              (expression_statement
+                (call
+                  (attribute
+                    (identifier)
+                    (identifier))
+                  (argument_list
+                    (identifier))))))
+          (case_clause
+            (case_pattern
+              (dict_pattern
+                (key_value_pattern
+                  (string
+                    (string_start)
+                    (string_content)
+                    (string_end))
+                  (case_pattern))
+                (key_value_pattern
+                  (string
+                    (string_start)
+                    (string_content)
+                    (string_end))
+                  (case_pattern))))
             (block
               (expression_statement
                 (call
@@ -1320,7 +1339,7 @@ match x:
 (module
   (match_statement
     (identifier)
-    (block
+    (match_block
       (case_clause
         (case_pattern
           (class_pattern
@@ -1496,12 +1515,14 @@ match x:
 (module
   (match_statement
     (identifier)
-    (block
+    (match_block
       (case_clause
         (case_pattern
           (complex_pattern
-            (integer)
-            (integer)))
+            (complex_pattern_real
+              (integer))
+            (complex_pattern_imag
+              (integer))))
         (block
           (pass_statement)))
       (case_clause
@@ -1509,8 +1530,10 @@ match x:
           (as_pattern
             (case_pattern
               (complex_pattern
-                (integer)
-                (integer)))
+                (complex_pattern_real
+                  (integer))
+                (complex_pattern_imag
+                  (integer))))
             (identifier)))
         (block
           (pass_statement)))
@@ -1524,23 +1547,29 @@ match x:
           (as_pattern
             (case_pattern
               (complex_pattern
-                (integer)
-                (integer)))
+                (complex_pattern_real
+                  (integer))
+                (complex_pattern_imag
+                  (integer))))
             (identifier)))
         (block
           (pass_statement)))
       (case_clause
         (case_pattern
           (complex_pattern
-            (float)
-            (integer)))
+            (complex_pattern_real
+              (float))
+            (complex_pattern_imag
+              (integer))))
         (block
           (pass_statement)))
       (case_clause
         (case_pattern
           (complex_pattern
-            (integer)
-            (float)))
+            (complex_pattern_real
+              (integer))
+            (complex_pattern_imag
+              (float))))
         (block
           (pass_statement))))))
 
@@ -1557,13 +1586,14 @@ match x:
 (module
   (match_statement
     (identifier)
-    (block
+    (match_block
       (case_clause
         (case_pattern
           (dotted_name
             (identifier)))
         (case_pattern
           (splat_pattern
+            (splat_pattern_list)
             (identifier)))
         (case_pattern
           (dotted_name

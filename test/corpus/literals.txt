@@ -767,55 +767,55 @@ List comprehensions
 (module
   (expression_statement
     (list_comprehension
-      (binary_operator
-        (identifier)
-        (identifier))
-      (for_in_clause
-        (tuple_pattern
+      body: (binary_operator
+        left: (identifier)
+        right: (identifier))
+      comprehensions: (for_in_clause
+        left: (tuple_pattern
           (identifier)
           (identifier))
-        (identifier))))
+        right: (identifier))))
   (expression_statement
     (list_comprehension
-      (identifier)
-      (for_in_clause
-        (identifier)
-        (identifier))
-      (for_in_clause
-        (identifier)
-        (identifier))))
+      body: (identifier)
+      comprehensions: (for_in_clause
+        left: (identifier)
+        right: (identifier))
+      comprehensions: (for_in_clause
+        left: (identifier)
+        right: (identifier))))
   (expression_statement
     (list_comprehension
-      (tuple
-        (identifier)
-        (identifier))
-      (for_in_clause
-        (identifier)
-        (list
-          (integer)
-          (integer)
-          (integer)))
-      (for_in_clause
-        (identifier)
-        (list
-          (integer)
-          (integer)
-          (integer)))
-      (if_clause
-        (true))))
+      body: (tuple
+        elements: (identifier)
+        elements: (identifier))
+      comprehensions: (for_in_clause
+        left: (identifier)
+        right: (list
+          elements: (integer)
+          elements: (integer)
+          elements: (integer)))
+      comprehensions: (for_in_clause
+        left: (identifier)
+        right: (list
+          elements: (integer)
+          elements: (integer)
+          elements: (integer)))
+      comprehensions: (if_clause
+        condition: (true))))
   (expression_statement
     (list_comprehension
-      (identifier)
-      (for_in_clause
-        (identifier)
-        (lambda
-          (true))
-        (lambda
-          (false)))
-      (if_clause
-        (call
-          (identifier)
-          (argument_list))))))
+      body: (identifier)
+      comprehensions: (for_in_clause
+        left: (identifier)
+        right: (lambda
+          body: (true))
+        right: (lambda
+          body: (false)))
+      comprehensions: (if_clause
+        condition: (call
+          function: (identifier)
+          arguments: (argument_list))))))
 
 ================================================================================
 Dictionaries
@@ -834,42 +834,42 @@ Dictionaries
 (module
   (expression_statement
     (dictionary
-      (pair
-        (identifier)
-        (integer))
-      (pair
-        (identifier)
-        (integer))))
+      elements: (pair
+        key: (identifier)
+        value: (integer))
+      elements: (pair
+        key: (identifier)
+        value: (integer))))
   (expression_statement
     (dictionary))
   (expression_statement
     (dictionary
-      (dictionary_splat
+      elements: (dictionary_splat
         (dictionary))))
   (expression_statement
     (dictionary
-      (dictionary_splat
+      elements: (dictionary_splat
         (identifier))))
   (expression_statement
     (dictionary
-      (dictionary_splat
+      elements: (dictionary_splat
         (attribute
-          (identifier)
-          (identifier)))))
+          object: (identifier)
+          attribute: (identifier)))))
   (expression_statement
     (dictionary
-      (dictionary_splat
+      elements: (dictionary_splat
         (attribute
-          (subscript
-            (identifier)
-            (identifier))
-          (identifier)))))
+          object: (subscript
+            value: (identifier)
+            subscript: (identifier))
+          attribute: (identifier)))))
   (expression_statement
     (dictionary
-      (dictionary_splat
+      elements: (dictionary_splat
         (call
-          (identifier)
-          (argument_list))))))
+          function: (identifier)
+          arguments: (argument_list))))))
 
 ================================================================================
 Dictionary comprehensions
@@ -883,25 +883,25 @@ Dictionary comprehensions
 (module
   (expression_statement
     (dictionary_comprehension
-      (pair
-        (identifier)
-        (identifier))
-      (for_in_clause
-        (pattern_list
+      body: (pair
+        key: (identifier)
+        value: (identifier))
+      comprehensions: (for_in_clause
+        left: (pattern_list
           (identifier)
           (identifier))
-        (identifier))))
+        right: (identifier))))
   (expression_statement
     (dictionary_comprehension
-      (pair
-        (identifier)
-        (identifier))
-      (for_in_clause
-        (identifier)
-        (identifier))
-      (for_in_clause
-        (identifier)
-        (identifier)))))
+      body: (pair
+        key: (identifier)
+        value: (identifier))
+      comprehensions: (for_in_clause
+        left: (identifier)
+        right: (identifier))
+      comprehensions: (for_in_clause
+        left: (identifier)
+        right: (identifier)))))
 
 ================================================================================
 Sets
