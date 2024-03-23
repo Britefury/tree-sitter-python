@@ -1300,11 +1300,7 @@
         "required": true,
         "types": [
           {
-            "type": "float",
-            "named": true
-          },
-          {
-            "type": "integer",
+            "type": "complex_pattern_imag",
             "named": true
           }
         ]
@@ -1314,15 +1310,49 @@
         "required": true,
         "types": [
           {
-            "type": "float",
-            "named": true
-          },
-          {
-            "type": "integer",
+            "type": "complex_pattern_real",
             "named": true
           }
         ]
       }
+    }
+  },
+  {
+    "type": "complex_pattern_imag",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "float",
+          "named": true
+        },
+        {
+          "type": "integer",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "complex_pattern_real",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "float",
+          "named": true
+        },
+        {
+          "type": "integer",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -2288,6 +2318,11 @@
         ]
       }
     }
+  },
+  {
+    "type": "is not",
+    "named": false,
+    "fields": {}
   },
   {
     "type": "key_value_pattern",

@@ -663,13 +663,18 @@ module.exports = grammar({
     ),
 
     complex_pattern: $ => prec(1, seq(
-      field('real', token(seq(optional('-'), choice($.integer, $.float)))),
-      field('imaginary', token(seq(choice('+', '-'), choice($.integer, $.float))),
-    ))),
+      field('real', $.complex_pattern_real),
+      field('imaginary', $.complex_pattern_imag),
+    )),
 
-    negatable_number: $ => seq(
+    complex_pattern_real: $ => seq(
       optional('-'),
       choice($.integer, $.float),
+    ),
+
+    complex_pattern_imag: $ => seq(
+      choice('+', '-'),
+      choice($.integer, $.float)
     ),
 
     // Patterns
