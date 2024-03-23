@@ -54,24 +54,24 @@ c[::]
 (module
   (expression_statement
     (subscript
-      (identifier)
-      (slice)))
+      value: (identifier)
+      subscript: (slice)))
   (expression_statement
     (subscript
-      (identifier)
-      (slice
-        (integer))))
+      value: (identifier)
+      subscript: (slice
+        start: (integer))))
   (expression_statement
     (subscript
-      (identifier)
-      (slice
-        (integer)
-        (integer))
-      (ellipsis)))
+      value: (identifier)
+      subscript: (slice
+        start: (integer)
+        stop: (integer))
+      subscript: (ellipsis)))
   (expression_statement
     (subscript
-      (identifier)
-      (slice))))
+      value: (identifier)
+      subscript: (slice))))
 
 ================================================================================
 Attribute references
@@ -84,10 +84,10 @@ a.b.c
 (module
   (expression_statement
     (attribute
-      (attribute
-        (identifier)
-        (identifier))
-      (identifier))))
+      object: (attribute
+        object: (identifier)
+        attribute: (identifier))
+      attribute: (identifier))))
 
 ================================================================================
 Await expressions
@@ -105,43 +105,43 @@ assert await a(b) == c
 (module
   (expression_statement
     (await
-      (call
-        (identifier)
-        (argument_list
+      value: (call
+        function: (identifier)
+        arguments: (argument_list
           (identifier)
           (integer)))))
   (return_statement
     (await
-      (call
-        (identifier)
-        (argument_list
+      value: (call
+        function: (identifier)
+        arguments: (argument_list
           (identifier)
           (integer)))))
-  (function_definition
-    (identifier)
-    (parameters
+  (async_function_definition
+    name: (identifier)
+    parameters: (parameters
       (typed_parameter
         (identifier)
-        (type
+        type: (type
           (identifier))))
-    (type
+    return_type: (type
       (identifier))
-    (block
+    body: (block
       (return_statement
         (comparison_operator
-          (identifier)
-          (await
-            (call
-              (identifier)
-              (argument_list)))))))
+          left: (identifier)
+          values: (await
+            value: (call
+              function: (identifier)
+              arguments: (argument_list)))))))
   (assert_statement
     (comparison_operator
-      (await
-        (call
-          (identifier)
-          (argument_list
+      left: (await
+        value: (call
+          function: (identifier)
+          arguments: (argument_list
             (identifier))))
-      (identifier))))
+      values: (identifier))))
 
 ================================================================================
 Call expressions
@@ -805,89 +805,89 @@ foo(x := 3, cat='vector')
 (module
   (expression_statement
     (named_expression
-      (identifier)
-      (identifier)))
+      name: (identifier)
+      value: (identifier)))
   (expression_statement
     (parenthesized_expression
-      (named_expression
-        (identifier)
-        (call
-          (identifier)
-          (argument_list
+      expr: (named_expression
+        name: (identifier)
+        value: (call
+          function: (identifier)
+          arguments: (argument_list
             (identifier))))))
   (expression_statement
     (call
-      (identifier)
-      (argument_list
+      function: (identifier)
+      arguments: (argument_list
         (keyword_argument
-          (identifier)
-          (parenthesized_expression
-            (named_expression
-              (identifier)
-              (call
-                (identifier)
-                (argument_list
+          name: (identifier)
+          value: (parenthesized_expression
+            expr: (named_expression
+              name: (identifier)
+              value: (call
+                function: (identifier)
+                arguments: (argument_list
                   (identifier)))))))))
   (expression_statement
     (assignment
-      (identifier)
-      (parenthesized_expression
-        (named_expression
-          (identifier)
-          (call
-            (identifier)
-            (argument_list
+      left: (identifier)
+      right: (parenthesized_expression
+        expr: (named_expression
+          name: (identifier)
+          value: (call
+            function: (identifier)
+            arguments: (argument_list
               (identifier)))))))
   (function_definition
-    (identifier)
-    (parameters
+    name: (identifier)
+    parameters: (parameters
       (default_parameter
-        (identifier)
-        (parenthesized_expression
-          (named_expression
-            (identifier)
-            (integer)))))
-    (block
+        name: (identifier)
+        value: (parenthesized_expression
+          expr: (named_expression
+            name: (identifier)
+            value: (integer)))))
+    body: (block
       (return_statement
         (identifier))))
   (function_definition
-    (identifier)
-    (parameters
+    name: (identifier)
+    parameters: (parameters
       (typed_default_parameter
-        (identifier)
-        (type
+        name: (identifier)
+        type: (type
           (parenthesized_expression
-            (named_expression
-              (identifier)
-              (integer))))
-        (integer)))
-    (block
+            expr: (named_expression
+              name: (identifier)
+              value: (integer))))
+        value: (integer)))
+    body: (block
       (return_statement
         (identifier))))
   (expression_statement
     (call
-      (identifier)
-      (argument_list
+      function: (identifier)
+      arguments: (argument_list
         (named_expression
-          (identifier)
-          (integer))
+          name: (identifier)
+          value: (integer))
         (keyword_argument
-          (identifier)
-          (string
+          name: (identifier)
+          value: (string
             (string_start)
             (string_content)
             (string_end))))))
   (expression_statement
     (parenthesized_expression
-      (named_expression
-        (identifier)
-        (parenthesized_expression
-          (named_expression
-            (identifier)
-            (parenthesized_expression
-              (named_expression
-                (identifier)
-                (integer)))))))))
+      expr: (named_expression
+        name: (identifier)
+        value: (parenthesized_expression
+          expr: (named_expression
+            name: (identifier)
+            value: (parenthesized_expression
+              expr: (named_expression
+                name: (identifier)
+                value: (integer)))))))))
 
 ================================================================================
 Yield expressions
@@ -904,33 +904,33 @@ def example():
 
 (module
   (function_definition
-    (identifier)
-    (parameters)
-    (block
+    name: (identifier)
+    parameters: (parameters)
+    body: (block
       (expression_statement
         (yield))
       (expression_statement
         (yield
-          (integer)))
+          value: (integer)))
       (expression_statement
         (assignment
-          (identifier)
-          (yield
-            (integer))))
+          left: (identifier)
+          right: (yield
+            value: (integer))))
       (expression_statement
         (yield
-          (identifier)))
+          value: (identifier)))
       (expression_statement
         (yield
-          (parenthesized_expression
-            (yield
-              (generator_expression
-                (identifier)
-                (for_in_clause
-                  (identifier)
-                  (call
-                    (identifier)
-                    (argument_list
+          value: (parenthesized_expression
+            expr: (yield
+              value: (generator_expression
+                body: (identifier)
+                comprehensions: (for_in_clause
+                  left: (identifier)
+                  right: (call
+                    function: (identifier)
+                    arguments: (argument_list
                       (integer)
                       (integer))))))))))))
 
@@ -1059,28 +1059,28 @@ slice(1,1,1) if a else d
 (module
   (expression_statement
     (assignment
-      (identifier)
-      (conditional_expression
-        (identifier)
-        (identifier)
-        (identifier))))
+      left: (identifier)
+      right: (conditional_expression
+        if_true: (identifier)
+        condition: (identifier)
+        if_false: (identifier))))
   (expression_statement
     (conditional_expression
-      (call
-        (identifier)
-        (argument_list))
-      (identifier)
-      (identifier)))
+      if_true: (call
+        function: (identifier)
+        arguments: (argument_list))
+      condition: (identifier)
+      if_false: (identifier)))
   (expression_statement
     (conditional_expression
-      (call
-        (identifier)
-        (argument_list
+      if_true: (call
+        function: (identifier)
+        arguments: (argument_list
           (integer)
           (integer)
           (integer)))
-      (identifier)
-      (identifier))))
+      condition: (identifier)
+      if_false: (identifier))))
 
 ================================================================================
 Async context managers and iterators
@@ -1093,22 +1093,22 @@ async with a as b:
 --------------------------------------------------------------------------------
 
 (module
-  (with_statement
-    (with_clause
+  (async_with_statement
+    with: (with_clause
       (with_item
         value: (as_pattern
-          (identifier)
+          value: (identifier)
           alias: (as_pattern_target
             (identifier)))))
     body: (block
-      (for_statement
+      (async_for_statement
         left: (identifier)
         right: (identifier)
         body: (block
           (expression_statement
             (list_comprehension
               body: (identifier)
-              (for_in_clause
+              comprehensions: (async_for_in_clause
                 left: (identifier)
                 right: (identifier)))))))))
 
@@ -1130,20 +1130,20 @@ def a():
 
 (module
   (function_definition
-    (identifier)
-    (parameters)
-    (block
+    name: (identifier)
+    parameters: (parameters)
+    body: (block
       (expression_statement
         (call
-          (identifier)
-          (argument_list
+          function: (identifier)
+          arguments: (argument_list
             (integer)
             (integer))))
       (expression_statement
         (assignment
-          (identifier)
-          (list
-            (integer)))))))
+          left: (identifier)
+          right: (list
+            elements: (integer)))))))
 
 ================================================================================
 Splat Inside of Expression List
@@ -1157,22 +1157,22 @@ w, x, y, z = 0, *a, c
 (module
   (expression_statement
     (assignment
-      (pattern_list
+      left: (pattern_list
         (identifier)
         (identifier))
-      (expression_list
+      right: (expression_list
         (list
-          (integer)
-          (integer))
+          elements: (integer)
+          elements: (integer))
         (integer))))
   (expression_statement
     (assignment
-      (pattern_list
+      left: (pattern_list
         (identifier)
         (identifier)
         (identifier)
         (identifier))
-      (expression_list
+      right: (expression_list
         (integer)
         (list_splat
           (identifier))
