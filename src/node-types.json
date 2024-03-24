@@ -724,55 +724,55 @@
         "required": true,
         "types": [
           {
-            "type": "%=",
+            "type": "op_aug_add",
             "named": false
           },
           {
-            "type": "&=",
+            "type": "op_aug_bitwise_and",
             "named": false
           },
           {
-            "type": "**=",
+            "type": "op_aug_bitwise_or",
             "named": false
           },
           {
-            "type": "*=",
+            "type": "op_aug_bitwise_xor",
             "named": false
           },
           {
-            "type": "+=",
+            "type": "op_aug_div",
             "named": false
           },
           {
-            "type": "-=",
+            "type": "op_aug_floordiv",
             "named": false
           },
           {
-            "type": "//=",
+            "type": "op_aug_lshift",
             "named": false
           },
           {
-            "type": "/=",
+            "type": "op_aug_matmul",
             "named": false
           },
           {
-            "type": "<<=",
+            "type": "op_aug_mod",
             "named": false
           },
           {
-            "type": ">>=",
+            "type": "op_aug_mul",
             "named": false
           },
           {
-            "type": "@=",
+            "type": "op_aug_pow",
             "named": false
           },
           {
-            "type": "^=",
+            "type": "op_aug_rshift",
             "named": false
           },
           {
-            "type": "|=",
+            "type": "op_aug_sub",
             "named": false
           }
         ]
@@ -844,56 +844,56 @@
         "required": true,
         "types": [
           {
-            "type": "%",
-            "named": false
+            "type": "op_bitwise_and",
+            "named": true
           },
           {
-            "type": "&",
-            "named": false
+            "type": "op_bitwise_or",
+            "named": true
           },
           {
-            "type": "*",
-            "named": false
+            "type": "op_bitwise_xor",
+            "named": true
           },
           {
-            "type": "**",
-            "named": false
+            "type": "op_div",
+            "named": true
           },
           {
-            "type": "+",
-            "named": false
+            "type": "op_floordiv",
+            "named": true
           },
           {
-            "type": "-",
-            "named": false
+            "type": "op_lshift",
+            "named": true
           },
           {
-            "type": "/",
-            "named": false
+            "type": "op_matmul",
+            "named": true
           },
           {
-            "type": "//",
-            "named": false
+            "type": "op_minus",
+            "named": true
           },
           {
-            "type": "<<",
-            "named": false
+            "type": "op_mod",
+            "named": true
           },
           {
-            "type": ">>",
-            "named": false
+            "type": "op_mul",
+            "named": true
           },
           {
-            "type": "@",
-            "named": false
+            "type": "op_plus",
+            "named": true
           },
           {
-            "type": "^",
-            "named": false
+            "type": "op_pow",
+            "named": true
           },
           {
-            "type": "|",
-            "named": false
+            "type": "op_rshift",
+            "named": true
           }
         ]
       },
@@ -1232,47 +1232,43 @@
         "required": true,
         "types": [
           {
-            "type": "!=",
-            "named": false
-          },
-          {
-            "type": "<",
-            "named": false
-          },
-          {
-            "type": "<=",
-            "named": false
-          },
-          {
-            "type": "<>",
-            "named": false
-          },
-          {
-            "type": "==",
-            "named": false
-          },
-          {
-            "type": ">",
-            "named": false
-          },
-          {
-            "type": ">=",
-            "named": false
-          },
-          {
-            "type": "in",
-            "named": false
-          },
-          {
-            "type": "is",
-            "named": false
-          },
-          {
             "type": "is not",
             "named": false
           },
           {
             "type": "not in",
+            "named": false
+          },
+          {
+            "type": "op_eq",
+            "named": false
+          },
+          {
+            "type": "op_gt",
+            "named": false
+          },
+          {
+            "type": "op_gte",
+            "named": false
+          },
+          {
+            "type": "op_in",
+            "named": false
+          },
+          {
+            "type": "op_is",
+            "named": false
+          },
+          {
+            "type": "op_lt",
+            "named": false
+          },
+          {
+            "type": "op_lte",
+            "named": false
+          },
+          {
+            "type": "op_ne",
             "named": false
           }
         ]
@@ -2313,11 +2309,6 @@
     }
   },
   {
-    "type": "is not",
-    "named": false,
-    "fields": {}
-  },
-  {
     "type": "key_value_pattern",
     "named": true,
     "fields": {
@@ -2823,11 +2814,6 @@
     }
   },
   {
-    "type": "not in",
-    "named": false,
-    "fields": {}
-  },
-  {
     "type": "not_operator",
     "named": true,
     "fields": {
@@ -2842,6 +2828,46 @@
         ]
       }
     }
+  },
+  {
+    "type": "op_bitwise_or",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "op_div",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "op_matmul",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "op_minus",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "op_mul",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "op_plus",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "op_pow",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "op_rshift",
+    "named": true,
+    "fields": {}
   },
   {
     "type": "pair",
@@ -3558,16 +3584,16 @@
         "required": true,
         "types": [
           {
-            "type": "+",
-            "named": false
+            "type": "op_bitwise_not",
+            "named": true
           },
           {
-            "type": "-",
-            "named": false
+            "type": "op_minus",
+            "named": true
           },
           {
-            "type": "~",
-            "named": false
+            "type": "op_plus",
+            "named": true
           }
         ]
       }
@@ -3778,26 +3804,6 @@
     }
   },
   {
-    "type": "!=",
-    "named": false
-  },
-  {
-    "type": "%",
-    "named": false
-  },
-  {
-    "type": "%=",
-    "named": false
-  },
-  {
-    "type": "&",
-    "named": false
-  },
-  {
-    "type": "&=",
-    "named": false
-  },
-  {
     "type": "(",
     "named": false
   },
@@ -3814,19 +3820,7 @@
     "named": false
   },
   {
-    "type": "**=",
-    "named": false
-  },
-  {
-    "type": "*=",
-    "named": false
-  },
-  {
     "type": "+",
-    "named": false
-  },
-  {
-    "type": "+=",
     "named": false
   },
   {
@@ -3835,10 +3829,6 @@
   },
   {
     "type": "-",
-    "named": false
-  },
-  {
-    "type": "-=",
     "named": false
   },
   {
@@ -3854,18 +3844,6 @@
     "named": false
   },
   {
-    "type": "//",
-    "named": false
-  },
-  {
-    "type": "//=",
-    "named": false
-  },
-  {
-    "type": "/=",
-    "named": false
-  },
-  {
     "type": ":",
     "named": false
   },
@@ -3878,39 +3856,7 @@
     "named": false
   },
   {
-    "type": "<",
-    "named": false
-  },
-  {
-    "type": "<<",
-    "named": false
-  },
-  {
-    "type": "<<=",
-    "named": false
-  },
-  {
-    "type": "<=",
-    "named": false
-  },
-  {
-    "type": "<>",
-    "named": false
-  },
-  {
     "type": "=",
-    "named": false
-  },
-  {
-    "type": "==",
-    "named": false
-  },
-  {
-    "type": ">",
-    "named": false
-  },
-  {
-    "type": ">=",
     "named": false
   },
   {
@@ -3918,15 +3864,7 @@
     "named": false
   },
   {
-    "type": ">>=",
-    "named": false
-  },
-  {
     "type": "@",
-    "named": false
-  },
-  {
-    "type": "@=",
     "named": false
   },
   {
@@ -3939,14 +3877,6 @@
   },
   {
     "type": "]",
-    "named": false
-  },
-  {
-    "type": "^",
-    "named": false
-  },
-  {
-    "type": "^=",
     "named": false
   },
   {
@@ -4082,7 +4012,7 @@
     "named": true
   },
   {
-    "type": "is",
+    "type": "is not",
     "named": false
   },
   {
@@ -4107,6 +4037,118 @@
   },
   {
     "type": "not",
+    "named": false
+  },
+  {
+    "type": "not in",
+    "named": false
+  },
+  {
+    "type": "op_aug_add",
+    "named": false
+  },
+  {
+    "type": "op_aug_bitwise_and",
+    "named": false
+  },
+  {
+    "type": "op_aug_bitwise_or",
+    "named": false
+  },
+  {
+    "type": "op_aug_bitwise_xor",
+    "named": false
+  },
+  {
+    "type": "op_aug_div",
+    "named": false
+  },
+  {
+    "type": "op_aug_floordiv",
+    "named": false
+  },
+  {
+    "type": "op_aug_lshift",
+    "named": false
+  },
+  {
+    "type": "op_aug_matmul",
+    "named": false
+  },
+  {
+    "type": "op_aug_mod",
+    "named": false
+  },
+  {
+    "type": "op_aug_mul",
+    "named": false
+  },
+  {
+    "type": "op_aug_pow",
+    "named": false
+  },
+  {
+    "type": "op_aug_rshift",
+    "named": false
+  },
+  {
+    "type": "op_aug_sub",
+    "named": false
+  },
+  {
+    "type": "op_bitwise_and",
+    "named": true
+  },
+  {
+    "type": "op_bitwise_not",
+    "named": true
+  },
+  {
+    "type": "op_bitwise_xor",
+    "named": true
+  },
+  {
+    "type": "op_eq",
+    "named": false
+  },
+  {
+    "type": "op_floordiv",
+    "named": true
+  },
+  {
+    "type": "op_gt",
+    "named": false
+  },
+  {
+    "type": "op_gte",
+    "named": false
+  },
+  {
+    "type": "op_in",
+    "named": false
+  },
+  {
+    "type": "op_is",
+    "named": false
+  },
+  {
+    "type": "op_lshift",
+    "named": true
+  },
+  {
+    "type": "op_lt",
+    "named": false
+  },
+  {
+    "type": "op_lte",
+    "named": false
+  },
+  {
+    "type": "op_mod",
+    "named": true
+  },
+  {
+    "type": "op_ne",
     "named": false
   },
   {
@@ -4178,15 +4220,7 @@
     "named": false
   },
   {
-    "type": "|=",
-    "named": false
-  },
-  {
     "type": "}",
-    "named": false
-  },
-  {
-    "type": "~",
     "named": false
   }
 ]

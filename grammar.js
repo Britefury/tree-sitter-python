@@ -820,21 +820,36 @@ module.exports = grammar({
       )),
     ),
 
+    op_plus: _ => '+',
+    op_minus: _ => '-',
+    op_mul: _ => '*',
+    op_matmul: _ => '@',
+    op_div: _ => '/',
+    op_mod: _ => '%',
+    op_floordiv: _ => '//',
+    op_pow: _ => '**',
+    op_bitwise_or: _ => '|',
+    op_bitwise_and: _ => '&',
+    op_bitwise_xor: _ => '^',
+    op_bitwise_not: _ => '~',
+    op_lshift: _ => '<<',
+    op_rshift: _ => '>>',
+
     binary_operator: $ => {
       const table = [
-        [prec.left, '+', PREC.plus],
-        [prec.left, '-', PREC.plus],
-        [prec.left, '*', PREC.times],
-        [prec.left, '@', PREC.times],
-        [prec.left, '/', PREC.times],
-        [prec.left, '%', PREC.times],
-        [prec.left, '//', PREC.times],
-        [prec.right, '**', PREC.power],
-        [prec.left, '|', PREC.bitwise_or],
-        [prec.left, '&', PREC.bitwise_and],
-        [prec.left, '^', PREC.xor],
-        [prec.left, '<<', PREC.shift],
-        [prec.left, '>>', PREC.shift],
+        [prec.left, $.op_plus, PREC.plus],
+        [prec.left, $.op_minus, PREC.plus],
+        [prec.left, $.op_mul, PREC.times],
+        [prec.left, $.op_matmul, PREC.times],
+        [prec.left, $.op_div, PREC.times],
+        [prec.left, $.op_mod, PREC.times],
+        [prec.left, $.op_floordiv, PREC.times],
+        [prec.right, $.op_pow, PREC.power],
+        [prec.left, $.op_bitwise_or, PREC.bitwise_or],
+        [prec.left, $.op_bitwise_and, PREC.bitwise_and],
+        [prec.left, $.op_bitwise_xor, PREC.xor],
+        [prec.left, $.op_lshift, PREC.shift],
+        [prec.left, $.op_rshift, PREC.shift],
       ];
 
       // @ts-ignore
@@ -847,7 +862,11 @@ module.exports = grammar({
     },
 
     unary_operator: $ => prec(PREC.unary, seq(
-      field('operator', choice('+', '-', '~')),
+      field('operator', choice(
+        $.op_plus,
+        $.op_minus,
+        $.op_bitwise_not
+      )),
       field('argument', $.primary_expression),
     )),
 
@@ -860,17 +879,17 @@ module.exports = grammar({
       repeat1(seq(
         field('operators',
           choice(
-            '<',
-            '<=',
-            '==',
-            '!=',
-            '>=',
-            '>',
-            '<>',
-            'in',
-            alias($._not_in, 'not in'),
-            'is',
-            alias($._is_not, 'is not'),
+            alias('<', 'op_lt'),
+            alias('<=', 'op_lte'),
+            alias('==', 'op_eq'),
+            alias('!=', 'op_ne'),
+            alias('>=', 'op_gte'),
+            alias('>', 'op_gt'),
+            alias('<>', 'op_ne'),
+            alias('in', 'op_in'),
+            alias(seq('not', 'in'), 'not in'),
+            alias('is', 'op_is'),
+            alias(seq('is', 'not'), 'is not'),
           )),
         field('values', $.primary_expression),
       )),
@@ -902,8 +921,19 @@ module.exports = grammar({
     augmented_assignment: $ => seq(
       field('left', $._left_hand_side),
       field('operator', choice(
-        '+=', '-=', '*=', '/=', '@=', '//=', '%=', '**=',
-        '>>=', '<<=', '&=', '^=', '|=',
+        alias('+=', 'op_aug_add'),
+        alias('-=', 'op_aug_sub'),
+        alias('*=', 'op_aug_mul'),
+        alias('@=', 'op_aug_matmul'),
+        alias('/=', 'op_aug_div'),
+        alias('%=', 'op_aug_mod'),
+        alias('//=', 'op_aug_floordiv'),
+        alias('**=', 'op_aug_pow'),
+        alias('<<=', 'op_aug_lshift'),
+        alias('>>=', 'op_aug_rshift'),
+        alias('|=', 'op_aug_bitwise_or'),
+        alias('&=', 'op_aug_bitwise_and'),
+        alias('^=', 'op_aug_bitwise_xor'),
       )),
       field('right', $._right_hand_side),
     ),
@@ -935,6 +965,17 @@ module.exports = grammar({
       $.pattern_list,
       $.yield,
     ),
+
+    yield: $ => prec.right(seq(
+      'yield',
+      choice(
+        seq(
+          'from',
+          field('value', $.expression),
+        ),
+        optional(field('value', $._expressions)),
+      ),
+    )),
 
     yield: $ => prec.right(seq(
       'yield',
