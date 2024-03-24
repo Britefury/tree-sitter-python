@@ -3728,6 +3728,14 @@
         ]
       }
     },
+    "bool_op_and": {
+      "type": "STRING",
+      "value": "and"
+    },
+    "bool_op_or": {
+      "type": "STRING",
+      "value": "or"
+    },
     "boolean_operator": {
       "type": "CHOICE",
       "members": [
@@ -3749,8 +3757,8 @@
                 "type": "FIELD",
                 "name": "operator",
                 "content": {
-                  "type": "STRING",
-                  "value": "and"
+                  "type": "SYMBOL",
+                  "name": "bool_op_and"
                 }
               },
               {
@@ -3782,8 +3790,8 @@
                 "type": "FIELD",
                 "name": "operator",
                 "content": {
-                  "type": "STRING",
-                  "value": "or"
+                  "type": "SYMBOL",
+                  "name": "bool_op_or"
                 }
               },
               {
@@ -4327,29 +4335,141 @@
         ]
       }
     },
-    "_not_in": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "STRING",
-          "value": "not"
-        },
-        {
-          "type": "STRING",
-          "value": "in"
-        }
-      ]
+    "cmp_op_lt": {
+      "type": "STRING",
+      "value": "<"
     },
-    "_is_not": {
+    "cmp_op_lte": {
+      "type": "STRING",
+      "value": "<="
+    },
+    "cmp_op_eq": {
+      "type": "STRING",
+      "value": "=="
+    },
+    "cmp_op_ne": {
+      "type": "STRING",
+      "value": "!="
+    },
+    "cmp_op_gte": {
+      "type": "STRING",
+      "value": ">="
+    },
+    "cmp_op_gt": {
+      "type": "STRING",
+      "value": ">"
+    },
+    "cmp_op_ne2": {
+      "type": "STRING",
+      "value": "<>"
+    },
+    "cmp_op_in": {
+      "type": "STRING",
+      "value": "in"
+    },
+    "cmp_op_not_in": {
+      "type": "ALIAS",
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "STRING",
+            "value": "not"
+          },
+          {
+            "type": "STRING",
+            "value": "in"
+          }
+        ]
+      },
+      "named": false,
+      "value": "not in"
+    },
+    "cmp_op_is": {
+      "type": "STRING",
+      "value": "is"
+    },
+    "cmp_op_is_not": {
+      "type": "ALIAS",
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "STRING",
+            "value": "is"
+          },
+          {
+            "type": "STRING",
+            "value": "not"
+          }
+        ]
+      },
+      "named": false,
+      "value": "is not"
+    },
+    "cmp_pair_op_val": {
       "type": "SEQ",
       "members": [
         {
-          "type": "STRING",
-          "value": "is"
+          "type": "FIELD",
+          "name": "operator",
+          "content": {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "cmp_op_lt"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "cmp_op_lte"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "cmp_op_eq"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "cmp_op_ne"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "cmp_op_gte"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "cmp_op_gt"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "cmp_op_ne2"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "cmp_op_in"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "cmp_op_not_in"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "cmp_op_is"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "cmp_op_is_not"
+              }
+            ]
+          }
         },
         {
-          "type": "STRING",
-          "value": "not"
+          "type": "FIELD",
+          "name": "value",
+          "content": {
+            "type": "SYMBOL",
+            "name": "primary_expression"
+          }
         }
       ]
     },
@@ -4368,145 +4488,19 @@
             }
           },
           {
-            "type": "REPEAT1",
+            "type": "FIELD",
+            "name": "right",
             "content": {
-              "type": "SEQ",
-              "members": [
-                {
-                  "type": "FIELD",
-                  "name": "operators",
-                  "content": {
-                    "type": "CHOICE",
-                    "members": [
-                      {
-                        "type": "ALIAS",
-                        "content": {
-                          "type": "STRING",
-                          "value": "<"
-                        },
-                        "named": false,
-                        "value": "op_lt"
-                      },
-                      {
-                        "type": "ALIAS",
-                        "content": {
-                          "type": "STRING",
-                          "value": "<="
-                        },
-                        "named": false,
-                        "value": "op_lte"
-                      },
-                      {
-                        "type": "ALIAS",
-                        "content": {
-                          "type": "STRING",
-                          "value": "=="
-                        },
-                        "named": false,
-                        "value": "op_eq"
-                      },
-                      {
-                        "type": "ALIAS",
-                        "content": {
-                          "type": "STRING",
-                          "value": "!="
-                        },
-                        "named": false,
-                        "value": "op_ne"
-                      },
-                      {
-                        "type": "ALIAS",
-                        "content": {
-                          "type": "STRING",
-                          "value": ">="
-                        },
-                        "named": false,
-                        "value": "op_gte"
-                      },
-                      {
-                        "type": "ALIAS",
-                        "content": {
-                          "type": "STRING",
-                          "value": ">"
-                        },
-                        "named": false,
-                        "value": "op_gt"
-                      },
-                      {
-                        "type": "ALIAS",
-                        "content": {
-                          "type": "STRING",
-                          "value": "<>"
-                        },
-                        "named": false,
-                        "value": "op_ne"
-                      },
-                      {
-                        "type": "ALIAS",
-                        "content": {
-                          "type": "STRING",
-                          "value": "in"
-                        },
-                        "named": false,
-                        "value": "op_in"
-                      },
-                      {
-                        "type": "ALIAS",
-                        "content": {
-                          "type": "SEQ",
-                          "members": [
-                            {
-                              "type": "STRING",
-                              "value": "not"
-                            },
-                            {
-                              "type": "STRING",
-                              "value": "in"
-                            }
-                          ]
-                        },
-                        "named": false,
-                        "value": "not in"
-                      },
-                      {
-                        "type": "ALIAS",
-                        "content": {
-                          "type": "STRING",
-                          "value": "is"
-                        },
-                        "named": false,
-                        "value": "op_is"
-                      },
-                      {
-                        "type": "ALIAS",
-                        "content": {
-                          "type": "SEQ",
-                          "members": [
-                            {
-                              "type": "STRING",
-                              "value": "is"
-                            },
-                            {
-                              "type": "STRING",
-                              "value": "not"
-                            }
-                          ]
-                        },
-                        "named": false,
-                        "value": "is not"
-                      }
-                    ]
-                  }
-                },
-                {
-                  "type": "FIELD",
-                  "name": "values",
-                  "content": {
+              "type": "REPEAT1",
+              "content": {
+                "type": "SEQ",
+                "members": [
+                  {
                     "type": "SYMBOL",
-                    "name": "primary_expression"
+                    "name": "cmp_pair_op_val"
                   }
-                }
-              ]
+                ]
+              }
             }
           }
         ]

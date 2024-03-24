@@ -947,12 +947,12 @@
         "required": true,
         "types": [
           {
-            "type": "and",
-            "named": false
+            "type": "bool_op_and",
+            "named": true
           },
           {
-            "type": "or",
-            "named": false
+            "type": "bool_op_or",
+            "named": true
           }
         ]
       },
@@ -1214,6 +1214,92 @@
     }
   },
   {
+    "type": "cmp_op_in",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "cmp_op_is",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "cmp_op_is_not",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "cmp_op_not_in",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "cmp_pair_op_val",
+    "named": true,
+    "fields": {
+      "operator": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "cmp_op_eq",
+            "named": true
+          },
+          {
+            "type": "cmp_op_gt",
+            "named": true
+          },
+          {
+            "type": "cmp_op_gte",
+            "named": true
+          },
+          {
+            "type": "cmp_op_in",
+            "named": true
+          },
+          {
+            "type": "cmp_op_is",
+            "named": true
+          },
+          {
+            "type": "cmp_op_is_not",
+            "named": true
+          },
+          {
+            "type": "cmp_op_lt",
+            "named": true
+          },
+          {
+            "type": "cmp_op_lte",
+            "named": true
+          },
+          {
+            "type": "cmp_op_ne",
+            "named": true
+          },
+          {
+            "type": "cmp_op_ne2",
+            "named": true
+          },
+          {
+            "type": "cmp_op_not_in",
+            "named": true
+          }
+        ]
+      },
+      "value": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "primary_expression",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
     "type": "comparison_operator",
     "named": true,
     "fields": {
@@ -1227,58 +1313,12 @@
           }
         ]
       },
-      "operators": {
+      "right": {
         "multiple": true,
         "required": true,
         "types": [
           {
-            "type": "is not",
-            "named": false
-          },
-          {
-            "type": "not in",
-            "named": false
-          },
-          {
-            "type": "op_eq",
-            "named": false
-          },
-          {
-            "type": "op_gt",
-            "named": false
-          },
-          {
-            "type": "op_gte",
-            "named": false
-          },
-          {
-            "type": "op_in",
-            "named": false
-          },
-          {
-            "type": "op_is",
-            "named": false
-          },
-          {
-            "type": "op_lt",
-            "named": false
-          },
-          {
-            "type": "op_lte",
-            "named": false
-          },
-          {
-            "type": "op_ne",
-            "named": false
-          }
-        ]
-      },
-      "values": {
-        "multiple": true,
-        "required": true,
-        "types": [
-          {
-            "type": "primary_expression",
+            "type": "cmp_pair_op_val",
             "named": true
           }
         ]
@@ -3888,10 +3928,6 @@
     "named": false
   },
   {
-    "type": "and",
-    "named": false
-  },
-  {
     "type": "as",
     "named": false
   },
@@ -3908,6 +3944,14 @@
     "named": false
   },
   {
+    "type": "bool_op_and",
+    "named": true
+  },
+  {
+    "type": "bool_op_or",
+    "named": true
+  },
+  {
     "type": "break",
     "named": false
   },
@@ -3918,6 +3962,34 @@
   {
     "type": "class",
     "named": false
+  },
+  {
+    "type": "cmp_op_eq",
+    "named": true
+  },
+  {
+    "type": "cmp_op_gt",
+    "named": true
+  },
+  {
+    "type": "cmp_op_gte",
+    "named": true
+  },
+  {
+    "type": "cmp_op_lt",
+    "named": true
+  },
+  {
+    "type": "cmp_op_lte",
+    "named": true
+  },
+  {
+    "type": "cmp_op_ne",
+    "named": true
+  },
+  {
+    "type": "cmp_op_ne2",
+    "named": true
   },
   {
     "type": "comment",
@@ -4010,6 +4082,10 @@
   {
     "type": "integer",
     "named": true
+  },
+  {
+    "type": "is",
+    "named": false
   },
   {
     "type": "is not",
@@ -4108,52 +4184,16 @@
     "named": true
   },
   {
-    "type": "op_eq",
-    "named": false
-  },
-  {
     "type": "op_floordiv",
     "named": true
-  },
-  {
-    "type": "op_gt",
-    "named": false
-  },
-  {
-    "type": "op_gte",
-    "named": false
-  },
-  {
-    "type": "op_in",
-    "named": false
-  },
-  {
-    "type": "op_is",
-    "named": false
   },
   {
     "type": "op_lshift",
     "named": true
   },
   {
-    "type": "op_lt",
-    "named": false
-  },
-  {
-    "type": "op_lte",
-    "named": false
-  },
-  {
     "type": "op_mod",
     "named": true
-  },
-  {
-    "type": "op_ne",
-    "named": false
-  },
-  {
-    "type": "or",
-    "named": false
   },
   {
     "type": "pass",
