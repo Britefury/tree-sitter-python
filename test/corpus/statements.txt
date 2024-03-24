@@ -469,12 +469,12 @@ async for x in xs:
     left: (pattern_list
       (identifier))
     right: (list
-      elements: (tuple
-        elements: (integer))
-      elements: (tuple
-        elements: (integer))
-      elements: (tuple
-        elements: (integer)))
+      (tuple
+        (integer))
+      (tuple
+        (integer))
+      (tuple
+        (integer)))
     body: (block
       (expression_statement
         (identifier))))
@@ -750,8 +750,8 @@ async def d(a:str="default", b=c) -> None:
         (identifier)
         type: (type
           (generic_type
-            (identifier)
-            (type_parameter
+            type: (identifier)
+            parameter: (type_parameter
               (type
                 (identifier)))))))
     return_type: (type
@@ -845,8 +845,8 @@ def foo():
     body: (block
       (return_statement
         (tuple
-          elements: (identifier)
-          elements: (identifier)))))
+          (identifier)
+          (identifier)))))
   (function_definition
     name: (identifier)
     parameters: (parameters
@@ -905,15 +905,15 @@ def foo():
           function: (identifier)
           arguments: (argument_list
             (parenthesized_expression
-              expr: (list_splat
+              (list_splat
                 (identifier))))))
       (expression_statement
         (call
           function: (identifier)
           arguments: (argument_list
             (parenthesized_expression
-              expr: (parenthesized_expression
-                expr: (list_splat
+              (parenthesized_expression
+                (list_splat
                   (identifier)))))))))
   (function_definition
     name: (identifier)

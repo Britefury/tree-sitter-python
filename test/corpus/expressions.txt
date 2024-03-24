@@ -106,14 +106,14 @@ assert await a(b) == c
 (module
   (expression_statement
     (await
-      value: (call
+      (call
         function: (identifier)
         arguments: (argument_list
           (identifier)
           (integer)))))
   (return_statement
     (await
-      value: (call
+      (call
         function: (identifier)
         arguments: (argument_list
           (identifier)
@@ -134,13 +134,13 @@ assert await a(b) == c
           right: (cmp_pair_op_val
             operator: (cmp_op_in)
             value: (await
-              value: (call
+              (call
                 function: (identifier)
                 arguments: (argument_list))))))))
   (assert_statement
     (comparison_operator
       left: (await
-        value: (call
+        (call
           function: (identifier)
           arguments: (argument_list
             (identifier))))
@@ -871,7 +871,7 @@ foo(x := 3, cat='vector')
       value: (identifier)))
   (expression_statement
     (parenthesized_expression
-      expr: (named_expression
+      (named_expression
         name: (identifier)
         value: (call
           function: (identifier)
@@ -884,7 +884,7 @@ foo(x := 3, cat='vector')
         (keyword_argument
           name: (identifier)
           value: (parenthesized_expression
-            expr: (named_expression
+            (named_expression
               name: (identifier)
               value: (call
                 function: (identifier)
@@ -894,7 +894,7 @@ foo(x := 3, cat='vector')
     (assignment
       left: (identifier)
       right: (parenthesized_expression
-        expr: (named_expression
+        (named_expression
           name: (identifier)
           value: (call
             function: (identifier)
@@ -906,7 +906,7 @@ foo(x := 3, cat='vector')
       (default_parameter
         name: (identifier)
         value: (parenthesized_expression
-          expr: (named_expression
+          (named_expression
             name: (identifier)
             value: (integer)))))
     body: (block
@@ -919,7 +919,7 @@ foo(x := 3, cat='vector')
         name: (identifier)
         type: (type
           (parenthesized_expression
-            expr: (named_expression
+            (named_expression
               name: (identifier)
               value: (integer))))
         value: (integer)))
@@ -941,13 +941,13 @@ foo(x := 3, cat='vector')
             (string_end))))))
   (expression_statement
     (parenthesized_expression
-      expr: (named_expression
+      (named_expression
         name: (identifier)
         value: (parenthesized_expression
-          expr: (named_expression
+          (named_expression
             name: (identifier)
             value: (parenthesized_expression
-              expr: (named_expression
+              (named_expression
                 name: (identifier)
                 value: (integer)))))))))
 
@@ -985,7 +985,7 @@ def example():
       (expression_statement
         (yield_from
           value: (parenthesized_expression
-            expr: (yield_from
+            (yield_from
               value: (generator_expression
                 body: (identifier)
                 comprehensions: (for_in_clause
@@ -1206,7 +1206,7 @@ def a():
         (assignment
           left: (identifier)
           right: (list
-            elements: (integer)))))))
+            (integer)))))))
 
 ================================================================================
 Splat Inside of Expression List
@@ -1225,8 +1225,8 @@ w, x, y, z = 0, *a, c
         (identifier))
       right: (expression_list
         (list
-          elements: (integer)
-          elements: (integer))
+          (integer)
+          (integer))
         (integer))))
   (expression_statement
     (assignment

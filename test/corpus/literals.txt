@@ -794,22 +794,22 @@ List comprehensions
   (expression_statement
     (list_comprehension
       body: (tuple
-        elements: (identifier)
-        elements: (identifier))
+        (identifier)
+        (identifier))
       comprehensions: (for_in_clause
         left: (identifier)
         right: (list
-          elements: (integer)
-          elements: (integer)
-          elements: (integer)))
+          (integer)
+          (integer)
+          (integer)))
       comprehensions: (for_in_clause
         left: (identifier)
         right: (list
-          elements: (integer)
-          elements: (integer)
-          elements: (integer)))
+          (integer)
+          (integer)
+          (integer)))
       comprehensions: (if_clause
-        condition: (true))))
+        (true))))
   (expression_statement
     (list_comprehension
       body: (identifier)
@@ -820,7 +820,7 @@ List comprehensions
         right: (lambda
           body: (false)))
       comprehensions: (if_clause
-        condition: (call
+        (call
           function: (identifier)
           arguments: (argument_list))))))
 
