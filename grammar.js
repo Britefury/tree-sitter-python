@@ -234,7 +234,7 @@ module.exports = grammar({
       $.tuple_expression,
       $.assignment,
       $.augmented_assignment,
-      $.yield,
+      $._yield,
     ),
 
     tuple_expression: $ =>
@@ -984,29 +984,20 @@ module.exports = grammar({
       $.assignment,
       $.augmented_assignment,
       $.pattern_list,
-      $.yield,
+      $._yield,
     ),
 
-    yield: $ => prec.right(seq(
-      'yield',
-      choice(
-        seq(
-          'from',
-          field('value', $.expression),
-        ),
-        optional(field('value', $._expressions)),
-      ),
-    )),
+    _yield: $ => choice($.yield, $.yield_from),
 
     yield: $ => prec.right(seq(
       'yield',
-      choice(
-        seq(
-          'from',
-          field('value', $.expression),
-        ),
-        optional(field('value', $._expressions)),
-      ),
+      optional(field('value', $._expressions)),
+    )),
+
+    yield_from: $ => prec.right(seq(
+      'yield',
+      'from',
+      field('value', $.expression),
     )),
 
     attribute: $ => prec(PREC.call, seq(
@@ -1147,13 +1138,13 @@ module.exports = grammar({
 
     parenthesized_expression: $ => prec(PREC.parenthesized_expression, seq(
       '(',
-      field('expr', choice($.expression, $.yield)),
+      field('expr', choice($.expression, $._yield)),
       ')',
     )),
 
     _collection_elements: $ => seq(
       commaSep1(field('elements', choice(
-        $.expression, $.yield, $.list_splat, $.parenthesized_list_splat,
+        $.expression, $._yield, $.list_splat, $.parenthesized_list_splat,
       ))),
       optional(','),
     ),
@@ -1216,7 +1207,7 @@ module.exports = grammar({
       $.expression,
       $.expression_list,
       $.pattern_list,
-      $.yield,
+      $._yield,
     ),
 
     escape_sequence: _ => token.immediate(prec(1, seq(
