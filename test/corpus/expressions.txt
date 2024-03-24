@@ -11,6 +11,7 @@ Identifiers with Greek letters
     left: (identifier)
     right: (binary_operator
       left: (identifier)
+      operator: (op_plus)
       right: (identifier))))
 
 ================================================================================
@@ -25,16 +26,16 @@ c[4, 5,]
 
 (module
   (subscript
-    (identifier)
-    (integer))
+    value: (identifier)
+    subscript: (integer))
   (subscript
-    (identifier)
-    (integer)
-    (integer))
+    value: (identifier)
+    subscript: (integer)
+    subscript: (integer))
   (subscript
-    (identifier)
-    (integer)
-    (integer)))
+    value: (identifier)
+    subscript: (integer)
+    subscript: (integer)))
 
 ================================================================================
 Subscript slice expressions
