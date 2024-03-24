@@ -12,6 +12,7 @@ Identifiers with Greek letters
       left: (identifier)
       right: (binary_operator
         left: (identifier)
+        operator: (op_plus)
         right: (identifier)))))
 
 ================================================================================
