@@ -1042,11 +1042,25 @@ module.exports = grammar({
       $.member_type,
     ),
     splat_type: $ => prec(1, seq(choice('*', '**'), $.identifier)),
-    generic_type: $ => prec(1, seq($.identifier, $.type_parameter)),
-    union_type: $ => prec.left(seq($.type, '|', $.type)),
-    constrained_type: $ => prec.right(seq($.type, ':', $.type)),
-    member_type: $ => seq($.type, '.', $.identifier),
-
+    generic_type: $ => prec(1, seq(
+      field('type', $.identifier),
+      field('parameter', $.type_parameter))
+    ),
+    union_type: $ => prec.left(seq(
+      field('left', $.type),
+      '|',
+      field('right', $.type)
+    )),
+    constrained_type: $ => prec.right(seq(
+      field('type', $.type),
+      ':',
+      field('constraint', $.type)
+    )),
+    member_type: $ => seq(
+      field('type', $.type),
+      '.',
+      field('member', $.identifier)
+    ),
     keyword_argument: $ => seq(
       field('name', choice($.identifier, $.keyword_identifier)),
       '=',
@@ -1124,14 +1138,14 @@ module.exports = grammar({
 
     parenthesized_expression: $ => prec(PREC.parenthesized_expression, seq(
       '(',
-      field('expr', choice($.expression, $._yield)),
+      choice($.expression, $._yield),
       ')',
     )),
 
     _collection_elements: $ => seq(
-      commaSep1(field('elements', choice(
+      commaSep1(choice(
         $.expression, $._yield, $.list_splat, $.parenthesized_list_splat,
-      ))),
+      )),
       optional(','),
     ),
 
@@ -1150,7 +1164,7 @@ module.exports = grammar({
 
     if_clause: $ => seq(
       'if',
-      field('condition', $.expression),
+      $.expression,
     ),
 
     conditional_expression: $ => prec.right(PREC.conditional, seq(
@@ -1284,7 +1298,7 @@ module.exports = grammar({
 
     await: $ => prec(PREC.unary, seq(
       'await',
-      field('value', $.primary_expression),
+      $.primary_expression,
     )),
 
     comment: _ => token(seq('#', /.*/)),
