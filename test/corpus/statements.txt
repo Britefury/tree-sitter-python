@@ -137,13 +137,16 @@ print not True
   (print_statement
     (boolean_operator
       (integer)
+      (bool_op_or)
       (integer))
     (boolean_operator
       (integer)
+      (bool_op_or)
       (integer)))
   (print_statement
     (boolean_operator
       (integer)
+      (bool_op_or)
       (integer)))
   (print_statement
     (not_operator
@@ -207,6 +210,7 @@ b + c
   (expression_statement
     (binary_operator
       (identifier)
+      (op_plus)
       (identifier)))
   (expression_statement
     (integer)
@@ -270,6 +274,7 @@ return not b
     (expression_list
       (binary_operator
         (identifier)
+        (op_plus)
         (identifier))
       (identifier)))
   (return_statement
@@ -1418,6 +1423,7 @@ or len("aa")
             (string_content)
             (string_end))))
       (line_continuation)
+      (bool_op_or)
       (call
         (identifier)
         (argument_list

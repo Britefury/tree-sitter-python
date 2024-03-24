@@ -21,6 +21,7 @@ Integers
 (module
   (expression_statement
     (unary_operator
+      (op_minus)
       (integer)))
   (expression_statement
     (integer))
@@ -30,6 +31,7 @@ Integers
     (integer))
   (expression_statement
     (unary_operator
+      (op_minus)
       (integer)))
   (expression_statement
     (integer))
@@ -66,9 +68,11 @@ Floats
 (module
   (expression_statement
     (unary_operator
+      (op_minus)
       (float)))
   (expression_statement
     (unary_operator
+      (op_plus)
       (float)))
   (expression_statement
     (float))
@@ -109,6 +113,7 @@ Scientific Notation Floats
     (float))
   (expression_statement
     (unary_operator
+      (op_minus)
       (float))))
 
 ================================================================================
@@ -547,6 +552,7 @@ f"{value:{width + padding!r}.{precision}}"
           (format_expression
             (binary_operator
               (identifier)
+              (op_plus)
               (identifier))
             (type_conversion))
           (format_expression
@@ -769,6 +775,7 @@ List comprehensions
     (list_comprehension
       body: (binary_operator
         left: (identifier)
+        operator: (op_plus)
         right: (identifier))
       comprehensions: (for_in_clause
         left: (tuple_pattern
