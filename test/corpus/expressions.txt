@@ -121,10 +121,12 @@ assert await a(b) == c
       (return_statement
         (comparison_operator
           left: (identifier)
-          values: (await
-            value: (call
-              function: (identifier)
-              arguments: (argument_list)))))))
+          right: (cmp_pair_op_val
+            operator: (cmp_op_in)
+            value: (await
+              value: (call
+                function: (identifier)
+                arguments: (argument_list))))))))
   (assert_statement
     (comparison_operator
       left: (await
@@ -132,7 +134,9 @@ assert await a(b) == c
           function: (identifier)
           arguments: (argument_list
             (identifier))))
-      values: (identifier))))
+      right: (cmp_pair_op_val
+        operator: (cmp_op_eq)
+        value: (identifier)))))
 
 ================================================================================
 Call expressions
@@ -378,22 +382,31 @@ a // 2
   (binary_operator
     (binary_operator
       (identifier)
+      (op_plus)
       (binary_operator
         (identifier)
+        (op_mul)
         (binary_operator
           (identifier)
+          (op_pow)
           (identifier))))
+    (op_minus)
     (binary_operator
       (identifier)
+      (op_div)
       (integer)))
   (binary_operator
     (identifier)
+    (op_floordiv)
     (integer))
   (unary_operator
+    (op_minus)
     (integer))
   (unary_operator
+    (op_plus)
     (identifier))
   (unary_operator
+    (op_bitwise_not)
     (identifier)))
 
 ================================================================================
@@ -413,21 +426,27 @@ Binary Addition / Subtraction With Floats
 (module
   (binary_operator
     (float)
+    (op_minus)
     (float))
   (binary_operator
     (float)
+    (op_plus)
     (float))
   (binary_operator
     (float)
+    (op_minus)
     (integer))
   (binary_operator
     (float)
+    (op_plus)
     (integer))
   (binary_operator
     (integer)
+    (op_minus)
     (float))
   (binary_operator
     (integer)
+    (op_plus)
     (float)))
 
 ================================================================================
@@ -442,12 +461,16 @@ Power Operator Precedence
 (module
   (binary_operator
     (integer)
+    (op_pow)
     (binary_operator
       (integer)
+      (op_pow)
       (integer)))
   (unary_operator
+    (op_minus)
     (binary_operator
       (integer)
+      (op_pow)
       (integer))))
 
 ================================================================================
@@ -463,10 +486,12 @@ a() + b[c] * c.d.e
     left: (call
       function: (identifier)
       arguments: (argument_list))
+    operator: (op_plus)
     right: (binary_operator
       left: (subscript
         value: (identifier)
         subscript: (identifier))
+      operator: (op_mul)
       right: (attribute
         object: (attribute
           object: (identifier)
@@ -485,13 +510,18 @@ a << b | c >> d & e ^ f
   (binary_operator
     (binary_operator
       (identifier)
+      (op_lshift)
       (identifier))
+    (op_bitwise_or)
     (binary_operator
       (binary_operator
         (identifier)
+        (op_rshift)
         (identifier))
+      (op_bitwise_and)
       (binary_operator
         (identifier)
+        (op_bitwise_xor)
         (identifier)))))
 
 ================================================================================
@@ -508,8 +538,10 @@ a and not b and c
 (module
   (boolean_operator
     (identifier)
+    (bool_op_or)
     (boolean_operator
       (identifier)
+      (bool_op_and)
       (identifier)))
   (not_operator
     (identifier))
@@ -517,13 +549,17 @@ a and not b and c
     (boolean_operator
       (not_operator
         (identifier))
+      (bool_op_and)
       (identifier))
+    (bool_op_or)
     (identifier))
   (boolean_operator
     (boolean_operator
       (identifier)
+      (bool_op_and)
       (not_operator
         (identifier)))
+    (bool_op_and)
     (identifier)))
 
 ================================================================================
@@ -542,35 +578,61 @@ a <> b
 (module
   (comparison_operator
     (identifier)
-    (identifier)
-    (identifier)
-    (identifier)
-    (identifier)
-    (identifier))
+    (cmp_pair_op_val
+      (cmp_op_lt)
+      (identifier))
+    (cmp_pair_op_val
+      (cmp_op_lte)
+      (identifier))
+    (cmp_pair_op_val
+      (cmp_op_eq)
+      (identifier))
+    (cmp_pair_op_val
+      (cmp_op_gte)
+      (identifier))
+    (cmp_pair_op_val
+      (cmp_op_gt)
+      (identifier)))
   (boolean_operator
     (not_operator
       (comparison_operator
         (identifier)
-        (identifier)))
+        (cmp_pair_op_val
+          (cmp_op_eq)
+          (identifier))))
+    (bool_op_or)
     (comparison_operator
       (identifier)
+      (cmp_pair_op_val
+        (cmp_op_eq)
+        (identifier))))
+  (comparison_operator
+    (identifier)
+    (cmp_pair_op_val
+      (cmp_op_not_in)
       (identifier)))
   (comparison_operator
     (identifier)
-    (identifier))
-  (comparison_operator
-    (identifier)
-    (identifier))
+    (cmp_pair_op_val
+      (cmp_op_is_not)
+      (identifier)))
   (boolean_operator
     (comparison_operator
       (identifier)
-      (identifier))
+      (cmp_pair_op_val
+        (cmp_op_is)
+        (identifier)))
+    (bool_op_and)
     (comparison_operator
       (identifier)
-      (identifier)))
+      (cmp_pair_op_val
+        (cmp_op_ne)
+        (identifier))))
   (comparison_operator
     (identifier)
-    (identifier)))
+      (cmp_pair_op_val
+        (cmp_op_ne2)
+        (identifier))))
 
 ================================================================================
 Assignments
@@ -869,6 +931,7 @@ lambda (a, b): (a, b)
             (string_start)
             (string_content)
             (string_end))
+          (op_mod)
           (identifier)))))
   (lambda
     (true))

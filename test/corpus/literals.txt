@@ -20,11 +20,13 @@ Integers
 
 (module
   (unary_operator
+    (op_minus)
     (integer))
   (integer)
   (integer)
   (integer)
   (unary_operator
+    (op_minus)
     (integer))
   (integer)
   (integer)
@@ -52,8 +54,10 @@ Floats
 
 (module
   (unary_operator
+    (op_minus)
     (float))
   (unary_operator
+    (op_plus)
     (float))
   (float)
   (float)
@@ -82,6 +86,7 @@ Scientific Notation Floats
   (float)
   (float)
   (unary_operator
+    (op_minus)
     (float)))
 
 ================================================================================
@@ -481,6 +486,7 @@ f"{value:{width + padding!r}.{precision}}"
         (format_expression
           (binary_operator
             (identifier)
+            (op_plus)
             (identifier))
           (type_conversion))
         (format_expression
@@ -551,6 +557,7 @@ t"Result: {a + b}"
     (interpolation
       (binary_operator
         (identifier)
+        (op_plus)
         (identifier)))
     (string_end)))
 
@@ -750,6 +757,7 @@ List comprehensions
   (list_comprehension
     body: (binary_operator
       left: (identifier)
+      operator: (op_plus)
       right: (identifier))
     comprehensions: (for_in_clause
       left: (tuple_pattern
