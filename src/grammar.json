@@ -620,7 +620,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "yield"
+          "name": "_yield"
         }
       ]
     },
@@ -4893,7 +4893,20 @@
         },
         {
           "type": "SYMBOL",
+          "name": "_yield"
+        }
+      ]
+    },
+    "_yield": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
           "name": "yield"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "yield_from"
         }
       ]
     },
@@ -4911,39 +4924,42 @@
             "type": "CHOICE",
             "members": [
               {
-                "type": "SEQ",
-                "members": [
-                  {
-                    "type": "STRING",
-                    "value": "from"
-                  },
-                  {
-                    "type": "FIELD",
-                    "name": "value",
-                    "content": {
-                      "type": "SYMBOL",
-                      "name": "expression"
-                    }
-                  }
-                ]
+                "type": "FIELD",
+                "name": "value",
+                "content": {
+                  "type": "SYMBOL",
+                  "name": "_expressions"
+                }
               },
               {
-                "type": "CHOICE",
-                "members": [
-                  {
-                    "type": "FIELD",
-                    "name": "value",
-                    "content": {
-                      "type": "SYMBOL",
-                      "name": "_expressions"
-                    }
-                  },
-                  {
-                    "type": "BLANK"
-                  }
-                ]
+                "type": "BLANK"
               }
             ]
+          }
+        ]
+      }
+    },
+    "yield_from": {
+      "type": "PREC_RIGHT",
+      "value": 0,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "STRING",
+            "value": "yield"
+          },
+          {
+            "type": "STRING",
+            "value": "from"
+          },
+          {
+            "type": "FIELD",
+            "name": "value",
+            "content": {
+              "type": "SYMBOL",
+              "name": "expression"
+            }
           }
         ]
       }
@@ -5719,7 +5735,7 @@
                 },
                 {
                   "type": "SYMBOL",
-                  "name": "yield"
+                  "name": "_yield"
                 }
               ]
             }
@@ -5749,7 +5765,7 @@
                   },
                   {
                     "type": "SYMBOL",
-                    "name": "yield"
+                    "name": "_yield"
                   },
                   {
                     "type": "SYMBOL",
@@ -5783,7 +5799,7 @@
                         },
                         {
                           "type": "SYMBOL",
-                          "name": "yield"
+                          "name": "_yield"
                         },
                         {
                           "type": "SYMBOL",
@@ -6128,7 +6144,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "yield"
+          "name": "_yield"
         }
       ]
     },
