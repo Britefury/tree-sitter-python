@@ -980,12 +980,12 @@ def example():
           right: (yield
             value: (integer))))
       (expression_statement
-        (yield
+        (yield_from
           value: (identifier)))
       (expression_statement
-        (yield
+        (yield_from
           value: (parenthesized_expression
-            expr: (yield
+            expr: (yield_from
               value: (generator_expression
                 body: (identifier)
                 comprehensions: (for_in_clause

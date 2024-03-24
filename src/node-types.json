@@ -490,6 +490,10 @@
           {
             "type": "yield",
             "named": true
+          },
+          {
+            "type": "yield_from",
+            "named": true
           }
         ]
       },
@@ -803,6 +807,10 @@
           },
           {
             "type": "yield",
+            "named": true
+          },
+          {
+            "type": "yield_from",
             "named": true
           }
         ]
@@ -1866,6 +1874,10 @@
         {
           "type": "yield",
           "named": true
+        },
+        {
+          "type": "yield_from",
+          "named": true
         }
       ]
     }
@@ -1995,6 +2007,10 @@
           },
           {
             "type": "yield",
+            "named": true
+          },
+          {
+            "type": "yield_from",
             "named": true
           }
         ]
@@ -2323,6 +2339,10 @@
           {
             "type": "yield",
             "named": true
+          },
+          {
+            "type": "yield_from",
+            "named": true
           }
         ]
       },
@@ -2622,6 +2642,10 @@
           },
           {
             "type": "yield",
+            "named": true
+          },
+          {
+            "type": "yield_from",
             "named": true
           }
         ]
@@ -2965,6 +2989,10 @@
           {
             "type": "yield",
             "named": true
+          },
+          {
+            "type": "yield_from",
+            "named": true
           }
         ]
       }
@@ -3151,6 +3179,10 @@
           },
           {
             "type": "yield",
+            "named": true
+          },
+          {
+            "type": "yield_from",
             "named": true
           }
         ]
@@ -3434,6 +3466,10 @@
           },
           {
             "type": "yield",
+            "named": true
+          },
+          {
+            "type": "yield_from",
             "named": true
           }
         ]
@@ -3837,6 +3873,22 @@
           },
           {
             "type": "expression_list",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "yield_from",
+    "named": true,
+    "fields": {
+      "value": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "expression",
             "named": true
           }
         ]
