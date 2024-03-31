@@ -513,8 +513,7 @@ finally:
     except: (except_clause
       value: (as_pattern
         value: (identifier)
-        alias: (as_pattern_target
-          (identifier)))
+        alias: (identifier))
       body: (block
         (identifier)))
     except: (except_clause
@@ -549,8 +548,7 @@ finally:
     except: (except_group_clause
       except_expr: (as_pattern
         value: (identifier)
-        alias: (as_pattern_target
-          (identifier)))
+        alias: (identifier))
       body: (block
         (identifier)))
     else: (else_clause
@@ -582,8 +580,7 @@ with e as f, g as h,:
       (with_item
         value: (as_pattern
           value: (identifier)
-          alias: (as_pattern_target
-            (identifier)))))
+          alias: (identifier))))
     body: (block
       (identifier)))
   (with_statement
@@ -597,8 +594,7 @@ with e as f, g as h,:
                 (string_start)
                 (string_content)
                 (string_end))))
-          alias: (as_pattern_target
-            (identifier))))
+          alias: (identifier)))
       (with_item
         value: (as_pattern
           value: (call
@@ -608,8 +604,7 @@ with e as f, g as h,:
                 (string_start)
                 (string_content)
                 (string_end))))
-          alias: (as_pattern_target
-            (identifier)))))
+          alias: (identifier))))
     body: (block
       (identifier)))
   (with_statement
@@ -617,13 +612,11 @@ with e as f, g as h,:
       (with_item
         value: (as_pattern
           value: (identifier)
-          alias: (as_pattern_target
-            (identifier))))
+          alias: (identifier)))
       (with_item
         value: (as_pattern
           value: (identifier)
-          alias: (as_pattern_target
-            (identifier)))))
+          alias: (identifier))))
     body: (block
       (identifier))))
 

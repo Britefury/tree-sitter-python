@@ -435,11 +435,7 @@
         "required": true,
         "types": [
           {
-            "type": "as_pattern_target",
-            "named": true
-          },
-          {
-            "type": "identifier",
+            "type": "expression",
             "named": true
           }
         ]
@@ -448,10 +444,6 @@
         "multiple": false,
         "required": true,
         "types": [
-          {
-            "type": "case_pattern",
-            "named": true
-          },
           {
             "type": "expression",
             "named": true
@@ -1089,10 +1081,6 @@
       "required": false,
       "types": [
         {
-          "type": "as_pattern",
-          "named": true
-        },
-        {
           "type": "class_pattern",
           "named": true
         },
@@ -1130,6 +1118,10 @@
         },
         {
           "type": "list_pattern",
+          "named": true
+        },
+        {
+          "type": "match_as_pattern",
           "named": true
         },
         {
@@ -2767,6 +2759,32 @@
           "named": true
         }
       ]
+    }
+  },
+  {
+    "type": "match_as_pattern",
+    "named": true,
+    "fields": {
+      "alias": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      },
+      "value": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "case_pattern",
+            "named": true
+          }
+        ]
+      }
     }
   },
   {
