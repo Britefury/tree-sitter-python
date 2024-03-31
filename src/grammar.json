@@ -2504,13 +2504,8 @@
         "type": "CHOICE",
         "members": [
           {
-            "type": "ALIAS",
-            "content": {
-              "type": "SYMBOL",
-              "name": "_as_pattern"
-            },
-            "named": true,
-            "value": "as_pattern"
+            "type": "SYMBOL",
+            "name": "match_as_pattern"
           },
           {
             "type": "SYMBOL",
@@ -2628,7 +2623,7 @@
         ]
       }
     },
-    "_as_pattern": {
+    "match_as_pattern": {
       "type": "SEQ",
       "members": [
         {
@@ -3526,13 +3521,8 @@
             "type": "FIELD",
             "name": "alias",
             "content": {
-              "type": "ALIAS",
-              "content": {
-                "type": "SYMBOL",
-                "name": "expression"
-              },
-              "named": true,
-              "value": "as_pattern_target"
+              "type": "SYMBOL",
+              "name": "expression"
             }
           }
         ]

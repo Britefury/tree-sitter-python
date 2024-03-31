@@ -580,7 +580,7 @@ module.exports = grammar({
     // Match cases
 
     case_pattern: $ => prec(1, choice(
-      alias($._as_pattern, $.as_pattern),
+      $.match_as_pattern,
       $.keyword_pattern,
       $._simple_pattern,
     )),
@@ -603,7 +603,7 @@ module.exports = grammar({
       '_',
     )),
 
-    _as_pattern: $ => seq(
+    match_as_pattern: $ => seq(
       field('value', $.case_pattern),
       'as',
       field('alias', $.identifier)
@@ -752,7 +752,7 @@ module.exports = grammar({
     as_pattern: $ => prec.left(seq(
       field('value', $.expression),
       'as',
-      field('alias', alias($.expression, $.as_pattern_target)),
+      field('alias', $.expression),
     )),
 
     // Expressions
