@@ -348,7 +348,7 @@ match command.split():
                 (string_content)
                 (string_end)))
             (case_pattern
-              (as_pattern
+              (match_as_pattern
                 (case_pattern
                   (tuple_pattern
                     (case_pattern
@@ -1527,7 +1527,7 @@ match x:
           (pass_statement)))
       (case_clause
         (case_pattern
-          (as_pattern
+          (match_as_pattern
             (case_pattern
               (complex_pattern
                 (complex_pattern_real
@@ -1539,12 +1539,12 @@ match x:
           (pass_statement)))
       (case_clause
         (case_pattern
-          (as_pattern
+          (match_as_pattern
             (case_pattern
               (integer))
             (identifier)))
         (case_pattern
-          (as_pattern
+          (match_as_pattern
             (case_pattern
               (complex_pattern
                 (complex_pattern_real
