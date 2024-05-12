@@ -731,42 +731,55 @@ n **= 3
 (module
   (augmented_assignment
     (identifier)
+    (op_aug_add)
     (integer))
   (augmented_assignment
     (identifier)
+    (op_aug_rshift)
     (integer))
   (augmented_assignment
     (identifier)
+    (op_aug_floordiv)
     (integer))
   (augmented_assignment
     (identifier)
+    (op_aug_matmul)
     (identifier))
   (augmented_assignment
     (identifier)
+    (op_aug_sub)
     (integer))
   (augmented_assignment
     (identifier)
+    (op_aug_mod)
     (integer))
   (augmented_assignment
     (identifier)
+    (op_aug_div)
     (integer))
   (augmented_assignment
     (identifier)
+    (op_aug_mul)
     (float))
   (augmented_assignment
     (identifier)
+    (op_aug_bitwise_and)
     (integer))
   (augmented_assignment
     (identifier)
+    (op_aug_bitwise_xor)
     (integer))
   (augmented_assignment
     (identifier)
+    (op_aug_lshift)
     (integer))
   (augmented_assignment
     (identifier)
+    (op_aug_bitwise_or)
     (identifier))
   (augmented_assignment
     (identifier)
+    (op_aug_pow)
     (integer)))
 
 ================================================================================
