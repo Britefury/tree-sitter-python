@@ -4655,6 +4655,58 @@
         }
       ]
     },
+    "op_aug_add": {
+      "type": "STRING",
+      "value": "+="
+    },
+    "op_aug_sub": {
+      "type": "STRING",
+      "value": "-="
+    },
+    "op_aug_mul": {
+      "type": "STRING",
+      "value": "*="
+    },
+    "op_aug_matmul": {
+      "type": "STRING",
+      "value": "@="
+    },
+    "op_aug_div": {
+      "type": "STRING",
+      "value": "/="
+    },
+    "op_aug_mod": {
+      "type": "STRING",
+      "value": "%="
+    },
+    "op_aug_floordiv": {
+      "type": "STRING",
+      "value": "//="
+    },
+    "op_aug_pow": {
+      "type": "STRING",
+      "value": "**="
+    },
+    "op_aug_lshift": {
+      "type": "STRING",
+      "value": "<<="
+    },
+    "op_aug_rshift": {
+      "type": "STRING",
+      "value": ">>="
+    },
+    "op_aug_bitwise_or": {
+      "type": "STRING",
+      "value": "|="
+    },
+    "op_aug_bitwise_and": {
+      "type": "STRING",
+      "value": "&="
+    },
+    "op_aug_bitwise_xor": {
+      "type": "STRING",
+      "value": "^="
+    },
     "augmented_assignment": {
       "type": "SEQ",
       "members": [
@@ -4673,121 +4725,56 @@
             "type": "CHOICE",
             "members": [
               {
-                "type": "ALIAS",
-                "content": {
-                  "type": "STRING",
-                  "value": "+="
-                },
-                "named": false,
-                "value": "op_aug_add"
+                "type": "SYMBOL",
+                "name": "op_aug_add"
               },
               {
-                "type": "ALIAS",
-                "content": {
-                  "type": "STRING",
-                  "value": "-="
-                },
-                "named": false,
-                "value": "op_aug_sub"
+                "type": "SYMBOL",
+                "name": "op_aug_sub"
               },
               {
-                "type": "ALIAS",
-                "content": {
-                  "type": "STRING",
-                  "value": "*="
-                },
-                "named": false,
-                "value": "op_aug_mul"
+                "type": "SYMBOL",
+                "name": "op_aug_mul"
               },
               {
-                "type": "ALIAS",
-                "content": {
-                  "type": "STRING",
-                  "value": "@="
-                },
-                "named": false,
-                "value": "op_aug_matmul"
+                "type": "SYMBOL",
+                "name": "op_aug_matmul"
               },
               {
-                "type": "ALIAS",
-                "content": {
-                  "type": "STRING",
-                  "value": "/="
-                },
-                "named": false,
-                "value": "op_aug_div"
+                "type": "SYMBOL",
+                "name": "op_aug_div"
               },
               {
-                "type": "ALIAS",
-                "content": {
-                  "type": "STRING",
-                  "value": "%="
-                },
-                "named": false,
-                "value": "op_aug_mod"
+                "type": "SYMBOL",
+                "name": "op_aug_mod"
               },
               {
-                "type": "ALIAS",
-                "content": {
-                  "type": "STRING",
-                  "value": "//="
-                },
-                "named": false,
-                "value": "op_aug_floordiv"
+                "type": "SYMBOL",
+                "name": "op_aug_floordiv"
               },
               {
-                "type": "ALIAS",
-                "content": {
-                  "type": "STRING",
-                  "value": "**="
-                },
-                "named": false,
-                "value": "op_aug_pow"
+                "type": "SYMBOL",
+                "name": "op_aug_pow"
               },
               {
-                "type": "ALIAS",
-                "content": {
-                  "type": "STRING",
-                  "value": "<<="
-                },
-                "named": false,
-                "value": "op_aug_lshift"
+                "type": "SYMBOL",
+                "name": "op_aug_lshift"
               },
               {
-                "type": "ALIAS",
-                "content": {
-                  "type": "STRING",
-                  "value": ">>="
-                },
-                "named": false,
-                "value": "op_aug_rshift"
+                "type": "SYMBOL",
+                "name": "op_aug_rshift"
               },
               {
-                "type": "ALIAS",
-                "content": {
-                  "type": "STRING",
-                  "value": "|="
-                },
-                "named": false,
-                "value": "op_aug_bitwise_or"
+                "type": "SYMBOL",
+                "name": "op_aug_bitwise_or"
               },
               {
-                "type": "ALIAS",
-                "content": {
-                  "type": "STRING",
-                  "value": "&="
-                },
-                "named": false,
-                "value": "op_aug_bitwise_and"
+                "type": "SYMBOL",
+                "name": "op_aug_bitwise_and"
               },
               {
-                "type": "ALIAS",
-                "content": {
-                  "type": "STRING",
-                  "value": "^="
-                },
-                "named": false,
-                "value": "op_aug_bitwise_xor"
+                "type": "SYMBOL",
+                "name": "op_aug_bitwise_xor"
               }
             ]
           }

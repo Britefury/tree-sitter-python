@@ -797,54 +797,67 @@ n **= 3
   (expression_statement
     (augmented_assignment
       (identifier)
+      (op_aug_add)
       (integer)))
   (expression_statement
     (augmented_assignment
       (identifier)
+      (op_aug_rshift)
       (integer)))
   (expression_statement
     (augmented_assignment
       (identifier)
+      (op_aug_floordiv)
       (integer)))
   (expression_statement
     (augmented_assignment
       (identifier)
+      (op_aug_matmul)
       (identifier)))
   (expression_statement
     (augmented_assignment
       (identifier)
+      (op_aug_sub)
       (integer)))
   (expression_statement
     (augmented_assignment
       (identifier)
+      (op_aug_mod)
       (integer)))
   (expression_statement
     (augmented_assignment
       (identifier)
+      (op_aug_div)
       (integer)))
   (expression_statement
     (augmented_assignment
       (identifier)
+      (op_aug_mul)
       (float)))
   (expression_statement
     (augmented_assignment
       (identifier)
+      (op_aug_bitwise_and)
       (integer)))
   (expression_statement
     (augmented_assignment
       (identifier)
+      (op_aug_bitwise_xor)
       (integer)))
   (expression_statement
     (augmented_assignment
       (identifier)
+      (op_aug_lshift)
       (integer)))
   (expression_statement
     (augmented_assignment
       (identifier)
+      (op_aug_bitwise_or)
       (identifier)))
   (expression_statement
     (augmented_assignment
       (identifier)
+      (op_aug_pow)
       (integer))))
 
 ================================================================================

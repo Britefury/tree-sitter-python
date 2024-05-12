@@ -721,55 +721,55 @@
         "types": [
           {
             "type": "op_aug_add",
-            "named": false
+            "named": true
           },
           {
             "type": "op_aug_bitwise_and",
-            "named": false
+            "named": true
           },
           {
             "type": "op_aug_bitwise_or",
-            "named": false
+            "named": true
           },
           {
             "type": "op_aug_bitwise_xor",
-            "named": false
+            "named": true
           },
           {
             "type": "op_aug_div",
-            "named": false
+            "named": true
           },
           {
             "type": "op_aug_floordiv",
-            "named": false
+            "named": true
           },
           {
             "type": "op_aug_lshift",
-            "named": false
+            "named": true
           },
           {
             "type": "op_aug_matmul",
-            "named": false
+            "named": true
           },
           {
             "type": "op_aug_mod",
-            "named": false
+            "named": true
           },
           {
             "type": "op_aug_mul",
-            "named": false
+            "named": true
           },
           {
             "type": "op_aug_pow",
-            "named": false
+            "named": true
           },
           {
             "type": "op_aug_rshift",
-            "named": false
+            "named": true
           },
           {
             "type": "op_aug_sub",
-            "named": false
+            "named": true
           }
         ]
       },
@@ -4215,55 +4215,55 @@
   },
   {
     "type": "op_aug_add",
-    "named": false
+    "named": true
   },
   {
     "type": "op_aug_bitwise_and",
-    "named": false
+    "named": true
   },
   {
     "type": "op_aug_bitwise_or",
-    "named": false
+    "named": true
   },
   {
     "type": "op_aug_bitwise_xor",
-    "named": false
+    "named": true
   },
   {
     "type": "op_aug_div",
-    "named": false
+    "named": true
   },
   {
     "type": "op_aug_floordiv",
-    "named": false
+    "named": true
   },
   {
     "type": "op_aug_lshift",
-    "named": false
+    "named": true
   },
   {
     "type": "op_aug_matmul",
-    "named": false
+    "named": true
   },
   {
     "type": "op_aug_mod",
-    "named": false
+    "named": true
   },
   {
     "type": "op_aug_mul",
-    "named": false
+    "named": true
   },
   {
     "type": "op_aug_pow",
-    "named": false
+    "named": true
   },
   {
     "type": "op_aug_rshift",
-    "named": false
+    "named": true
   },
   {
     "type": "op_aug_sub",
-    "named": false
+    "named": true
   },
   {
     "type": "op_bitwise_and",
