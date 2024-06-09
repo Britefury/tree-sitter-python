@@ -591,9 +591,9 @@ with e as f, g as h,:
             function: (identifier)
             arguments: (argument_list
               (string
-                (string_start)
-                (string_content)
-                (string_end))))
+                start: (string_start)
+                content: (string_content)
+                end: (string_end))))
           alias: (identifier)))
       (with_item
         value: (as_pattern
@@ -601,9 +601,9 @@ with e as f, g as h,:
             function: (identifier)
             arguments: (argument_list
               (string
-                (string_start)
-                (string_content)
-                (string_end))))
+                start: (string_start)
+                content: (string_content)
+                end: (string_end))))
           alias: (identifier))))
     body: (block
       (identifier)))
@@ -740,9 +740,9 @@ async def d(a:str="default", b=c) -> None:
         type: (type
           (identifier))
         value: (string
-          (string_start)
-          (string_content)
-          (string_end)))
+          start: (string_start)
+          content: (string_content)
+          end: (string_end)))
       (default_parameter
         name: (identifier)
         value: (identifier)))
