@@ -11,7 +11,7 @@
 #define ALIAS_COUNT 2
 #define TOKEN_COUNT 109
 #define EXTERNAL_TOKEN_COUNT 12
-#define FIELD_COUNT 58
+#define FIELD_COUNT 60
 #define MAX_ALIAS_SEQUENCE_LENGTH 10
 #define PRODUCTION_ID_COUNT 142
 
@@ -2130,51 +2130,53 @@ enum ts_field_identifiers {
   field_condition = 11,
   field_consequence = 12,
   field_constraint = 13,
-  field_decorators = 14,
-  field_definition = 15,
-  field_elements = 16,
-  field_elifs = 17,
-  field_else = 18,
-  field_env = 19,
-  field_except = 20,
-  field_except_expr = 21,
-  field_exception = 22,
-  field_expression = 23,
-  field_finally = 24,
-  field_format_specifier = 25,
-  field_function = 26,
-  field_guard = 27,
-  field_if_false = 28,
-  field_if_true = 29,
-  field_imaginary = 30,
-  field_key = 31,
-  field_left = 32,
-  field_levels = 33,
-  field_member = 34,
-  field_module_name = 35,
-  field_name = 36,
-  field_object = 37,
-  field_operator = 38,
-  field_parameter = 39,
-  field_parameters = 40,
-  field_pattern = 41,
-  field_patterns = 42,
-  field_real = 43,
-  field_return_type = 44,
-  field_right = 45,
-  field_splat = 46,
-  field_start = 47,
-  field_step = 48,
-  field_stop = 49,
-  field_subject = 50,
-  field_subscript = 51,
-  field_superclasses = 52,
-  field_to = 53,
-  field_type = 54,
-  field_type_conversion = 55,
-  field_type_parameters = 56,
-  field_value = 57,
-  field_with = 58,
+  field_content = 14,
+  field_decorators = 15,
+  field_definition = 16,
+  field_elements = 17,
+  field_elifs = 18,
+  field_else = 19,
+  field_end = 20,
+  field_env = 21,
+  field_except = 22,
+  field_except_expr = 23,
+  field_exception = 24,
+  field_expression = 25,
+  field_finally = 26,
+  field_format_specifier = 27,
+  field_function = 28,
+  field_guard = 29,
+  field_if_false = 30,
+  field_if_true = 31,
+  field_imaginary = 32,
+  field_key = 33,
+  field_left = 34,
+  field_levels = 35,
+  field_member = 36,
+  field_module_name = 37,
+  field_name = 38,
+  field_object = 39,
+  field_operator = 40,
+  field_parameter = 41,
+  field_parameters = 42,
+  field_pattern = 43,
+  field_patterns = 44,
+  field_real = 45,
+  field_return_type = 46,
+  field_right = 47,
+  field_splat = 48,
+  field_start = 49,
+  field_step = 50,
+  field_stop = 51,
+  field_subject = 52,
+  field_subscript = 53,
+  field_superclasses = 54,
+  field_to = 55,
+  field_type = 56,
+  field_type_conversion = 57,
+  field_type_parameters = 58,
+  field_value = 59,
+  field_with = 60,
 };
 
 static const char * const ts_field_names[] = {
@@ -2192,11 +2194,13 @@ static const char * const ts_field_names[] = {
   [field_condition] = "condition",
   [field_consequence] = "consequence",
   [field_constraint] = "constraint",
+  [field_content] = "content",
   [field_decorators] = "decorators",
   [field_definition] = "definition",
   [field_elements] = "elements",
   [field_elifs] = "elifs",
   [field_else] = "else",
+  [field_end] = "end",
   [field_env] = "env",
   [field_except] = "except",
   [field_except_expr] = "except_expr",
@@ -2379,108 +2383,115 @@ static const TSFieldMapEntry ts_field_map_entries[] = {
   [0] =
     {field_decorators, 0},
   [1] =
-    {field_name, 1, .inherited = true},
-  [2] =
-    {field_name, 0},
+    {field_end, 1},
+    {field_start, 0},
   [3] =
-    {field_levels, 0},
+    {field_name, 1, .inherited = true},
   [4] =
-    {field_to, 1},
+    {field_name, 0},
   [5] =
-    {field_argument, 1},
+    {field_levels, 0},
   [6] =
-    {field_exception, 1},
+    {field_to, 1},
   [7] =
-    {field_value, 0},
+    {field_argument, 1},
   [8] =
-    {field_code, 1},
+    {field_exception, 1},
   [9] =
+    {field_value, 0},
+  [10] =
+    {field_code, 1},
+  [11] =
     {field_argument, 1},
     {field_operator, 0},
-  [11] =
+  [13] =
     {field_value, 1},
-  [12] =
+  [14] =
     {field_arguments, 1},
     {field_function, 0},
-  [14] =
+  [16] =
     {field_left, 0},
     {field_right, 1},
-  [16] =
-    {field_decorators, 0, .inherited = true},
-    {field_definition, 1},
   [18] =
     {field_decorators, 0, .inherited = true},
-    {field_decorators, 1, .inherited = true},
+    {field_definition, 1},
   [20] =
+    {field_decorators, 0, .inherited = true},
+    {field_decorators, 1, .inherited = true},
+  [22] =
+    {field_content, 1},
+    {field_end, 2},
+    {field_start, 0},
+  [25] =
     {field_name, 0},
     {field_name, 1, .inherited = true},
-  [22] =
+  [27] =
     {field_levels, 0},
     {field_module_name, 1},
-  [24] =
+  [29] =
     {field_argument, 2, .inherited = true},
     {field_to, 1},
-  [26] =
+  [31] =
     {field_argument, 1},
     {field_argument, 2, .inherited = true},
-  [28] =
+  [33] =
     {field_cause, 2},
-  [29] =
+  [34] =
     {field_parameter, 1},
     {field_type, 0},
-  [31] =
+  [36] =
     {field_elements, 1},
-  [32] =
+  [37] =
     {field_body, 2},
-  [33] =
+  [38] =
     {field_value, 2},
-  [34] =
+  [39] =
     {field_name, 0},
     {field_value, 2},
-  [36] =
+  [41] =
     {field_left, 0},
     {field_type, 2},
-  [38] =
+  [43] =
     {field_left, 0},
     {field_right, 2},
-  [40] =
+  [45] =
     {field_left, 0},
     {field_operator, 1},
     {field_right, 2},
-  [43] =
+  [48] =
     {field_alias, 2},
     {field_value, 0},
-  [45] =
+  [50] =
     {field_attribute, 2},
     {field_object, 0},
-  [47] =
+  [52] =
     {field_operator, 0},
     {field_value, 1},
-  [49] =
+  [54] =
     {field_expression, 1},
-  [50] =
+  [55] =
     {field_name, 1},
-  [51] =
+  [56] =
     {field_name, 0, .inherited = true},
     {field_name, 1, .inherited = true},
-  [53] =
+  [58] =
     {field_alias, 2},
     {field_name, 0},
-  [55] =
+  [60] =
     {field_name, 3, .inherited = true},
-  [56] =
+  [61] =
     {field_module_name, 1},
     {field_name, 3, .inherited = true},
-  [58] =
+  [63] =
     {field_module_name, 1},
     {field_name, 3},
-  [60] =
+  [65] =
     {field_body, 1},
     {field_comprehensions, 2},
-  [62] =
+  [67] =
     {field_argument, 0, .inherited = true},
     {field_argument, 1, .inherited = true},
-  [64] =
+  [69] =
     {field_cause, 3},
   [47] =
     {field_condition, 1},
@@ -2612,143 +2623,143 @@ static const TSFieldMapEntry ts_field_map_entries[] = {
     {field_consequence, 3},
     {field_elifs, 4, .inherited = true},
     {field_else, 5},
-  [194] =
+  [199] =
     {field_elifs, 0, .inherited = true},
     {field_elifs, 1, .inherited = true},
-  [196] =
+  [201] =
     {field_condition, 1},
     {field_consequence, 3},
     {field_consequence, 4},
     {field_else, 5},
-  [200] =
+  [205] =
     {field_condition, 1},
     {field_consequence, 3},
     {field_consequence, 4},
     {field_elifs, 5, .inherited = true},
-  [204] =
+  [209] =
     {field_alternative, 1, .inherited = true},
-  [205] =
+  [210] =
     {field_alternative, 0, .inherited = true},
     {field_alternative, 1, .inherited = true},
-  [207] =
+  [212] =
     {field_body, 5},
     {field_subject, 1},
     {field_subject, 2, .inherited = true},
-  [210] =
+  [215] =
     {field_body, 5},
     {field_left, 1},
     {field_right, 3},
-  [213] =
+  [218] =
     {field_body, 4},
     {field_body, 5},
     {field_with, 2},
-  [216] =
+  [221] =
     {field_body, 5},
     {field_name, 2},
     {field_parameters, 3},
-  [219] =
+  [224] =
     {field_body, 3},
     {field_body, 4},
     {field_condition, 1},
     {field_else, 5},
-  [223] =
+  [228] =
     {field_body, 2},
     {field_else, 4},
     {field_except, 3, .inherited = true},
     {field_finally, 5},
-  [227] =
+  [232] =
     {field_body, 2},
     {field_body, 3},
     {field_else, 5},
     {field_except, 4, .inherited = true},
-  [231] =
+  [236] =
     {field_body, 2},
     {field_body, 3},
     {field_except, 4, .inherited = true},
     {field_finally, 5},
-  [235] =
+  [240] =
     {field_body, 4},
     {field_body, 5},
     {field_name, 1},
     {field_parameters, 2},
-  [239] =
+  [244] =
     {field_body, 5},
     {field_name, 1},
     {field_parameters, 3},
     {field_type_parameters, 2},
-  [243] =
+  [248] =
     {field_env, 1},
-  [244] =
+  [249] =
     {field_env, 0, .inherited = true},
     {field_env, 1, .inherited = true},
-  [246] =
+  [251] =
     {field_body, 4},
     {field_body, 5},
     {field_name, 1},
     {field_type_parameters, 2},
-  [250] =
+  [255] =
     {field_body, 5},
     {field_name, 1},
     {field_superclasses, 3},
     {field_type_parameters, 2},
-  [254] =
+  [259] =
     {field_body, 4},
     {field_body, 5},
     {field_name, 1},
     {field_superclasses, 2},
-  [258] =
+  [263] =
     {field_name, 0},
     {field_type, 2},
     {field_value, 4},
-  [261] =
+  [266] =
     {field_step, 3},
     {field_stop, 1},
-  [263] =
+  [268] =
     {field_start, 0},
     {field_step, 3},
-  [265] =
+  [270] =
     {field_expression, 1},
     {field_format_specifier, 4},
     {field_type_conversion, 3},
-  [268] =
+  [273] =
     {field_left, 1},
     {field_right, 3},
     {field_right, 4},
-  [271] =
+  [276] =
     {field_left, 2},
     {field_right, 4},
-  [273] =
+  [278] =
     {field_condition, 1},
     {field_consequence, 3},
     {field_consequence, 4},
     {field_elifs, 5, .inherited = true},
     {field_else, 6},
-  [278] =
+  [283] =
     {field_name, 1},
     {field_splat, 0},
-  [280] =
+  [285] =
     {field_imaginary, 1},
     {field_real, 0},
-  [282] =
+  [287] =
     {field_body, 5},
     {field_else, 6},
     {field_left, 1},
     {field_right, 3},
-  [286] =
+  [291] =
     {field_body, 5},
     {field_body, 6},
     {field_left, 1},
     {field_right, 3},
-  [290] =
+  [295] =
     {field_body, 6},
     {field_left, 2},
     {field_right, 4},
-  [293] =
+  [298] =
     {field_body, 5},
     {field_body, 6},
     {field_name, 2},
     {field_parameters, 3},
-  [297] =
+  [302] =
     {field_body, 6},
     {field_name, 2},
     {field_parameters, 4},
@@ -2797,7 +2808,7 @@ static const TSFieldMapEntry ts_field_map_entries[] = {
     {field_else, 7},
     {field_left, 1},
     {field_right, 3},
-  [339] =
+  [344] =
     {field_body, 6},
     {field_else, 7},
     {field_left, 2},
@@ -2931,33 +2942,33 @@ static const TSSymbol ts_alias_sequences[PRODUCTION_ID_COUNT][MAX_ALIAS_SEQUENCE
   [3] = {
     [0] = sym_list_splat,
   },
-  [7] = {
+  [8] = {
     [1] = sym_identifier,
   },
-  [34] = {
+  [36] = {
     [0] = anon_alias_sym_notin,
     [1] = anon_alias_sym_notin,
   },
-  [36] = {
+  [38] = {
     [0] = anon_alias_sym_isnot,
     [1] = anon_alias_sym_isnot,
   },
-  [44] = {
+  [46] = {
     [1] = sym_parenthesized_expression,
   },
-  [48] = {
-    [3] = sym_block,
-  },
-  [52] = {
+  [50] = {
     [3] = sym_block,
   },
   [54] = {
-    [2] = sym_block,
-  },
-  [55] = {
-    [2] = sym_block,
+    [3] = sym_block,
   },
   [56] = {
+    [2] = sym_block,
+  },
+  [57] = {
+    [2] = sym_block,
+  },
+  [58] = {
     [3] = sym_block,
   },
   [57] = {
@@ -3002,37 +3013,16 @@ static const TSSymbol ts_alias_sequences[PRODUCTION_ID_COUNT][MAX_ALIAS_SEQUENCE
   [70] = {
     [0] = alias_sym_format_expression,
   },
-  [73] = {
+  [75] = {
     [3] = sym_block,
   },
-  [74] = {
+  [76] = {
     [3] = sym_block,
   },
-  [79] = {
+  [81] = {
     [4] = sym_block,
-  },
-  [80] = {
-    [3] = sym_block,
   },
   [82] = {
-    [2] = sym_block,
-  },
-  [83] = {
-    [2] = sym_block,
-  },
-  [88] = {
-    [4] = sym_block,
-  },
-  [91] = {
-    [4] = sym_block,
-  },
-  [92] = {
-    [4] = sym_block,
-  },
-  [95] = {
-    [0] = sym_identifier,
-  },
-  [107] = {
     [3] = sym_block,
   },
   [105] = {
@@ -3068,14 +3058,11 @@ static const TSSymbol ts_alias_sequences[PRODUCTION_ID_COUNT][MAX_ALIAS_SEQUENCE
   [129] = {
     [5] = sym_block,
   },
-  [128] = {
-    [5] = sym_block,
-  },
-  [139] = {
+  [130] = {
     [5] = sym_block,
   },
   [141] = {
-    [6] = sym_block,
+    [5] = sym_block,
   },
   [133] = {
     [5] = sym_block,

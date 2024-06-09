@@ -949,9 +949,9 @@ foo(x := 3, cat='vector')
         (keyword_argument
           name: (identifier)
           value: (string
-            (string_start)
-            (string_content)
-            (string_end))))))
+            start: (string_start)
+            content: (string_content)
+            end: (string_end))))))
   (expression_statement
     (parenthesized_expression
       (named_expression
