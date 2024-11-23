@@ -2518,6 +2518,10 @@
         ]
       }
     },
+    "any_pattern": {
+      "type": "STRING",
+      "value": "_"
+    },
     "_simple_pattern": {
       "type": "PREC",
       "value": 1,
@@ -2617,8 +2621,8 @@
             "name": "dotted_name"
           },
           {
-            "type": "STRING",
-            "value": "_"
+            "type": "SYMBOL",
+            "name": "any_pattern"
           }
         ]
       }

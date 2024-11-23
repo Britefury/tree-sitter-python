@@ -585,6 +585,8 @@ module.exports = grammar({
       $._simple_pattern,
     )),
 
+    any_pattern: $ => '_',
+
     _simple_pattern: $ => prec(1, choice(
       $.class_pattern,
       $.splat_pattern,
@@ -600,7 +602,7 @@ module.exports = grammar({
       seq(optional('-'), choice($.integer, $.float)),
       $.complex_pattern,
       $.dotted_name,
-      '_',
+      $.any_pattern,
     )),
 
     match_as_pattern: $ => seq(

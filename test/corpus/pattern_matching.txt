@@ -211,7 +211,8 @@ match command.split():
         (block
           (pass_statement)))
       (case_clause
-        (case_pattern)
+        (case_pattern
+          (any_pattern))
         (block
           (expression_statement
             (call
@@ -1146,13 +1147,15 @@ for action in actions:
                     (string_start)
                     (string_content)
                     (string_end))
-                  (case_pattern))
+                  (case_pattern
+                    (any_pattern)))
                 (key_value_pattern
                   (string
                     (string_start)
                     (string_content)
                     (string_end))
-                  (case_pattern))))
+                  (case_pattern
+                    (any_pattern)))))
             (block
               (expression_statement
                 (call
@@ -1295,13 +1298,15 @@ for action in actions:
                     (string_start)
                     (string_content)
                     (string_end))
-                  (case_pattern))
+                  (case_pattern
+                    (any_pattern)))
                 (key_value_pattern
                   (string
                     (string_start)
                     (string_content)
                     (string_end))
-                  (case_pattern))))
+                  (case_pattern
+                    (any_pattern)))))
             (block
               (expression_statement
                 (call
