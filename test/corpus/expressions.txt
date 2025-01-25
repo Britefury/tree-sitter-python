@@ -433,6 +433,7 @@ a // 2
   (expression_statement
     (binary_operator
       (identifier)
+      (op_floordiv)
       (integer)))
   (expression_statement
     (unary_operator
@@ -678,13 +679,13 @@ a <> b
         (identifier)
         (cmp_pair_op_val
           (cmp_op_is)
-          (identifier))))
+          (identifier)))
       (bool_op_and)
       (comparison_operator
         (identifier)
         (cmp_pair_op_val
           (cmp_op_ne)
-          (identifier))))
+          (identifier)))))
   (expression_statement
     (comparison_operator
       (identifier)

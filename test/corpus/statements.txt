@@ -528,9 +528,9 @@ finally:
     body: (block
       (expression_statement
         (identifier)))
-    (except_clause
+    except: (except_clause
       value: (identifier)
-      (block
+      body: (block
         (expression_statement
           (identifier))))
     except: (except_clause
@@ -540,10 +540,10 @@ finally:
       body: (block
         (expression_statement
           (identifier))))
-    (except_clause
+    except: (except_clause
       value: (identifier)
       alias: (identifier)
-      (block
+      body: (block
         (expression_statement
           (identifier))))
     except: (except_clause
@@ -554,9 +554,9 @@ finally:
     body: (block
       (expression_statement
         (identifier)))
-    (except_clause
+    except: (except_clause
       value: (identifier)
-      (block
+      body: (block
         (expression_statement
           (identifier))
         (expression_statement
