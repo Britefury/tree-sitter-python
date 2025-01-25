@@ -5328,8 +5328,12 @@
             ]
           },
           {
-            "type": "SYMBOL",
-            "name": "type_parameter"
+            "type": "FIELD",
+            "name": "parameter",
+            "content": {
+              "type": "SYMBOL",
+              "name": "type_parameter"
+            }
           }
         ]
       }

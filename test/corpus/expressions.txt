@@ -630,9 +630,9 @@ a <> b
         (identifier))))
   (comparison_operator
     (identifier)
-      (cmp_pair_op_val
-        (cmp_op_ne2)
-        (identifier))))
+    (cmp_pair_op_val
+      (cmp_op_ne2)
+      (identifier))))
 
 ================================================================================
 Assignments

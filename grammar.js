@@ -1071,7 +1071,7 @@ module.exports = grammar({
         field('type', $.identifier),
         field('type', alias('type', $.identifier)),
       ),
-      $.type_parameter,
+      field('parameter', $.type_parameter),
     )),
     union_type: $ => prec.left(seq(
       field('left', $.type),
