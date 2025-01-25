@@ -599,7 +599,13 @@ module.exports = grammar({
       $.true,
       $.false,
       $.none,
-      seq(optional('-'), choice($.integer, $.float)),
+      
+      // seq(optional('-'), choice($.integer, $.float)),
+      $.float,
+      $.integer,
+      $.negated_float,
+      $.negated_integer,
+
       $.complex_pattern,
       $.dotted_name,
       $.any_pattern,
@@ -1279,6 +1285,10 @@ module.exports = grammar({
       ),
     )),
 
+    negated_integer: $ => seq(
+      '-', $.integer,
+    ),
+
     float: _ => {
       const digits = repeat1(/[0-9]+_?/);
       const exponent = seq(/[eE][\+-]?/, digits);
@@ -1292,6 +1302,10 @@ module.exports = grammar({
         optional(/[jJ]/),
       ));
     },
+
+    negated_float: $ => seq(
+      '-', $.float
+    ),
 
     identifier: _ => /[_\p{XID_Start}][_\p{XID_Continue}]*/,
 

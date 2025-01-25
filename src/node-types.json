@@ -1104,6 +1104,14 @@
           "named": true
         },
         {
+          "type": "negated_float",
+          "named": true
+        },
+        {
+          "type": "negated_integer",
+          "named": true
+        },
+        {
           "type": "none",
           "named": true
         },
@@ -2390,13 +2398,9 @@
     "named": true,
     "fields": {
       "key": {
-        "multiple": true,
+        "multiple": false,
         "required": true,
         "types": [
-          {
-            "type": "-",
-            "named": false
-          },
           {
             "type": "any_pattern",
             "named": true
@@ -2435,6 +2439,14 @@
           },
           {
             "type": "list_pattern",
+            "named": true
+          },
+          {
+            "type": "negated_float",
+            "named": true
+          },
+          {
+            "type": "negated_integer",
             "named": true
           },
           {
@@ -2516,13 +2528,9 @@
         ]
       },
       "pattern": {
-        "multiple": true,
+        "multiple": false,
         "required": true,
         "types": [
-          {
-            "type": "-",
-            "named": false
-          },
           {
             "type": "any_pattern",
             "named": true
@@ -2561,6 +2569,14 @@
           },
           {
             "type": "list_pattern",
+            "named": true
+          },
+          {
+            "type": "negated_float",
+            "named": true
+          },
+          {
+            "type": "negated_integer",
             "named": true
           },
           {
@@ -2908,6 +2924,36 @@
           }
         ]
       }
+    }
+  },
+  {
+    "type": "negated_float",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "float",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "negated_integer",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "integer",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -3773,6 +3819,14 @@
         },
         {
           "type": "list_pattern",
+          "named": true
+        },
+        {
+          "type": "negated_float",
+          "named": true
+        },
+        {
+          "type": "negated_integer",
           "named": true
         },
         {

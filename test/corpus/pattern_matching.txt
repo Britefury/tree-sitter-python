@@ -602,7 +602,8 @@ match xxx:
         (case_pattern
           (union_pattern
             (integer)
-            (integer)))
+            (negated_integer
+              (integer))))
         (block
           (pass_statement)))
       (case_clause
@@ -630,7 +631,8 @@ match xxx:
         (case_pattern
           (union_pattern
             (float)
-            (float)))
+            (negated_float
+              (float))))
         (block
           (pass_statement)))
       (case_clause
